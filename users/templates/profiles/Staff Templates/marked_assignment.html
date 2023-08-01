@@ -1,0 +1,42 @@
+{% extends 'profiles/Staff Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #mg-markass{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+    </style>
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Marked Assignments</h3>
+    {% for assign in submit %}
+    {% if assign.assignment.created_by == request.user.staff %}
+        {% if assign.score %}
+        <h2>Marked</h2>
+        <div class="container" style="margin-top: 45px; background-color: beige;">
+            <p>Assignment Subject: <h2>{{ assign.subject.name }}</h2></p>
+
+            <p>Assignment Submitted By: <h2>{{ assign.submitted_by.admin.username }} {{ assign.submitted_by.admin.first_name }} {{ assign.submitted_by.admin.last_name}}</h2></p>
+            <p>Date Submitted: <h2>{{ assign.created_at }} </h2></p>
+            <input type="hidden" name="submitted_by" value="{{ assign.submitted_by.id }}" id="">
+
+            {% if assign.submitted_assignment_file %}
+                <input class="form-control" type="hidden" name="submitted_assignment_file" value="{{assign.submitted_assignment_file.url}}" id="">
+                <p>Assignment file:
+                <a href="{{ assign.submitted_assignment_file.url }}" download>
+                    Download Assignment File
+                </a></p>
+            {% endif %}
+            <p> Question: <br><textarea class="form-control" disabled cols="50" rows="10" name="submitted_assignment_text">{{ assign.assignment.question_text }}</textarea><br></P>
+    
+            <p> Answer to question: <br><textarea class="form-control" disabled cols="50" rows="10" name="submitted_assignment_text">{{ assign.submitted_assignment_text }}</textarea></p>
+            <h2 style="width: 30%; padding:1%;">Score: {{assign.score}}</h2>
+        </div>
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+{% endblock %}

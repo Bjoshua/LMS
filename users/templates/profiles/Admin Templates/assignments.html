@@ -1,0 +1,32 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    {% comment %} <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}"> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #assignn{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+    </style>
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Assignment</h3>
+    {% for assignment in assignments %}
+            <h2 style="margin-top: 3%;">{{assignment.subject.name}}</h2>
+            <div class="container" style="display: flex; flex-direction:row; background-color: beige;">
+                <div class="side" style="width:100%; height: 100%; padding: 1%;">
+                    <h3>Assignment Created By:<br>{{assignment.created_by.admin.first_name}} {{assignment.created_by.admin.last_name}} ({{assignment.created_by.admin.username}})</h3>
+                    <p>Assignment Created at:{{assignment.created_at}}<br></p>
+                    <p>Assignment Last Updated at:{{assignment.updated_at}}<br></p>
+                    <p>Assignment Class: {{assignment.form_class}}</p>
+                    <textarea disabled cols="40" rows="10">{{assignment.question_text}}</textarea>
+                    {% if assignment.question_file %}
+                        <a href="{{assignment.question_file.url}}"download>Get Assignment File</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% comment %} {% else %} {% endcomment %}
+    {% endfor %}
+{% endblock %}

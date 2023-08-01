@@ -1,0 +1,46 @@
+{% extends 'profiles/Student Templates/base.html' %}
+{% load static %}
+{% block css %}
+        <link rel="stylesheet" href="{% static 'profile/students/result.css'%}">
+    <style>
+        #result{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+        .profile-pic{
+            /* margin-top: 20px; */
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h2 class="result-text">Results</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>SUBJECT</th>
+            <th>1st CA TEST(10)</th>
+            <th>2nd CA TEST(10)</th>
+            <th>ASSIGNMENT(5)</th>
+            <th>PROJECT(5)</th>
+            <th>EXAMINATION(70)</th>
+            <th>TOTAL(100)</th>
+            <th>STATUS</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <td>Maths</td>
+            <td>10</td>
+            <td>10</td>
+            <td>5</td>
+            <td>5</td>
+            <td>70</td>
+            <td>100</td>
+            <td>Excellent</td>
+        </tr>
+    </table>
+{% endblock %}

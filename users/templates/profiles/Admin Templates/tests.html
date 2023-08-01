@@ -1,0 +1,34 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    {% comment %} <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}"> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #test{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+    </style>
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Test</h3>
+    {% for test in tests %}
+                <h2 style="margin-top: 3%;">{{test.subject.name}}</h2>
+                <h3>{{test.test_name}} CA Test</h3>
+                <div class="container" style="display: flex; flex-direction:row; background-color: beige;">
+                    <div class="side" style="width:100%; height: 100%; padding: 1%;">
+                        <h3>Test Created By:<br>{{test.created_by.admin.first_name}} {{test.created_by.admin.last_name}} ({{test.created_by.admin.username}})</h3>
+                        <p>Test Created at:{{test.created_at}}<br></p>
+                        <p>Test Last Updated at:{{test.updated_at}}<br></p>
+                        <p>Test Class: {{test.form_class}}</p>
+    
+                        <h3>Test Question</h3>
+                        <textarea disabled cols="40" rows="10">{{test.test_text}}</textarea>
+                        {% if test.test_file %}
+                            <a href="{{test.test_file.url}}"download>Get Test File</a>
+                        {% endif %}
+                    </div>
+                </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'profiles/Student Templates/base.html' %}
+{%block content%}
+<style>
+</style>
+<h1 style="text-align: center;" class="mb-3 bg-success p-2">You scored {{score}}/{{overall_score}} !!!</h1>
+
+<div class="p-2 bg-primary d-flex flex-column gap-2">
+    <!-- <div class="d-flex flex-row gap-2"> -->
+        <h4>Performance: </h4><small>{{percentage}}%</small>
+        <h4>Total Questions:</h4><small>{{total_questions}} Questions</small> 
+        <h4>Duration: </h4><small>{{cbtr.cbt.duration}}mins</small>
+    <!-- </div> -->
+    <div class="table-div mt-3">
+        <table class="table table-primary table-hover text-nowrap">
+            <tr>
+                <th>Score</th>
+                <th>Total Marks</th>
+                <th>Questions Gotten</th>
+                <th>Questions Missed</th>
+            </tr>
+            <tr>
+                <td>{{score}}</td>
+                <td>{{overall_score}}</td>
+                <td>{{q_got}}</td>
+                <td>{{q_missed}}</td>
+            </tr>
+        </table>
+    </div>
+    <a href="{% url 'allcbts'%}"><button class="w-100 btn-success btn">Back to CBTs</button></a>
+</div>
+{% endblock content%}

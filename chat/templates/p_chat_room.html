@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'chat.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome-2/css/all.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <section style="justify-content: center;">
+        <aside style="width: 40%;">
+            <!-- <i class="fas fa-exit" style="background-color: yellow;"></i> -->
+            <h1>{%if request.user.user_type == "staff"%}
+                    <a href="{% url 'staff_home'%}"><i class="fas fa-arrow-left" style="color: red;"></i></a>
+                {%endif%}
+                {%if request.user.user_type == "student"%}
+                <a href="{% url 'student_home'%}"><i class="fas fa-arrow-left" style="color: red;"></i></a>
+                {%endif%}
+                {{room.name}}
+            </h1>
+            <div class="participants-div">
+                <h3>Chat with:</h3>
+                <div class="participants-list">
+                 
+                    {%for user in users%}
+                    
+                    <a href="{% url 'personal_message' receiver_pk=user.id%}">
+                            <div class="participant">
+                                {%if user.user_type == "staff"%}
+                                    {%if user.staff.profile_pic%}
+                                        <img src="{{user.staff.profile_pic.url}}" alt="">
+                                    {%else%}
+                                        <div class="no-pic"></div>
+                                    {%endif%}
+                                    <p>Staff {{user.first_name}} {{user.last_name}}</p>
+
+                                {%elif user.user_type == "student"%}
+                                    {%if user.student.profile_pic%}
+                                        <img src="{{user.staff.profile_pic.url}}" alt="">
+                                    {%else%}
+                                        <div class="no-pic"></div>
+                                    {%endif%}
+                                    <p>Student {{user.first_name}} {{user.last_name}}</p>
+
+                                {%else%}
+                                    {%if user.profile_pic%}
+                                        <img src="{{user.profile_pic.url}}" alt="">
+                                    {%else%}
+                                        <div class="no-pic"></div>
+                                    {%endif%}
+                                    <p>Admin {{user.first_name}}</p>
+                                {%endif%}
+
+                            </div>
+                        </a>
+                    {%endfor%}
+                </div>
+            </div>
+        </aside>
+        {%block message%}{%endblock%}
+    </section>
+</body>
+</html>

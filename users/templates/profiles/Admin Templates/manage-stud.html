@@ -1,0 +1,94 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <style>
+        #form-el{
+            display: none;
+        }
+        #form-el.active{
+            display: block;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        #staff-link{
+        background-color: rgb(3, 100, 174) !important;
+        }
+    </style>
+{% endblock css %}
+{% block content%}
+    <div class=" h-100 overflow-scroll">
+        <h3>Students</h3>
+        <button class="btn-success btn mt-2" id="btn-el"> <i class="fa fa-add"></i> Add Students</button>
+        <form action="" method="POST" class="mt-3" id="form-el" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            
+            <div>
+                <label for="picture">Profile Picture</label>
+                <input type="file" name="picture" id="picture" class="form-control">
+            </div>
+            <div>
+                <label for="date_of_birth">Date Of Birth</label>
+                <input type="date" name="date_of_birth" class="form-control">
+            </div>
+            <button class="btn-primary btn mt-3">Submit</button>
+        </form>
+        <div class="card-body table-responsive p-0 mt-3">
+            <table class="table table-success table-hover text-nowrap">
+                <tr class="">
+                    {% comment %} <th>ID</th> {% endcomment %}
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                        <th>Department</th>
+                        <th>Class</th>
+                        {% comment %} <th>Address</th> {% endcomment %}
+                        <th>Last Login</th>
+                        <th>Date Joined</th>
+                        <th>Edit</th>
+                        {% comment %} <th>Password Change</th> {% endcomment %}
+                        <th>Delete</th>
+                        <th>Profile</th>
+                </tr>
+                {% for student in students%}
+                    <tr>
+                        {% comment %} <td>{{student.admin.id}}</td> {% endcomment %}
+                            {% comment %} <td><img src="{{student.profile_pic}}"></img></td> {% endcomment %}
+                            <td>{{student.admin.first_name}}</td>
+                            <td><p>{{student.admin.last_name}}</p></td>
+                            <td><p>{{student.admin.username}}</p></td>
+                            <td><p>{{student.admin.email}}</p></td>
+                            <td><p>{{student.age}}</p></td>
+                            <td><p>{{student.department_id}}</p></td>
+                            <td><p>{{student.student_class}}</p></td>
+                            {% comment %} <td><p>{{student.student_class}}</p></td> {% endcomment %}
+                            {% comment %} <td><p>{{student.address}}</p></td> {% endcomment %}
+                            {%if student.admin.last_login%}
+                                <td><p>{{student.admin.last_login}}</p></td>
+                            {%else%}
+                                <td>Not Logged in yet</td>
+                            {%endif%}
+                            <td><p>{{student.admin.date_joined}}</p></td>
+                            <td><button class="btn btn-primary"><a href="{% url 'admin_student_edit_profile' user_id=student.admin.id %}">Edit</a></button></td>                 
+                            {% comment %} <td><button class="btn btn-warning"><a href="{% url 'passwordchange' user_id=student.admin.id %}">Password Change</a></button></td>                  {% endcomment %}
+                            <td><button class="btn btn-danger"><a href="{% url 'delete_student' student_id=student.id%}">Delete</a></button></td>
+                            <td><button class="btn btn-success"> Profile</button><td>                 
+                    </tr>
+                {%endfor%}          
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block js%}
+    <script>
+        const btnEl = document.getElementById("btn-el")
+        const formEl = document.getElementById("form-el")
+        btnEl.addEventListener("click", function(){
+            formEl.classList.toggle("active")
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'profiles/Student Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #assign{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+    </style>
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Assignment</h3>
+    {% for assignment in assignments %}
+            <h2 style="margin-top: 3%;">{{assignment.subject.name}}</h2>
+            <div class="container" style="display: flex; flex-direction:row; background-color: beige;">
+                <div class="side" style="width:50%; height: 100%; padding: 1%;">
+                    <h3>Assignment Question</h3>
+                    <textarea disabled cols="40" rows="10">{{assignment.question_text}}</textarea>
+                    {% if assignment.question_file %}
+                        <a href="{{assignment.question_file.url}}"download>Get Assignment File</a>
+                    {% endif %}
+                </div>
+                <form role="form" method="POST" enctype="multipart/form-data" style="width:50%; height: 100%;">
+                    {% csrf_token %}
+                    <h2>Answer To Assignment</h2>
+                    <input type="hidden" name="assignment_id" value="{{assignment.id}}">
+                    <input type="hidden" name="subject_id" value="{{assignment.subject.id}}">
+
+                    {{ form }}
+                    {%for aa in form %}
+                        {{aa.helptext}}
+                    {% endfor %}
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary" id="submit-btn">Submit Assignment</button>
+                    </div>
+                </form>
+            </div>
+        {% comment %} {% else %} {% endcomment %}
+        
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+
+{% block  content%}
+    <h3 class="add-staff">Edit Student</h3>
+    <form role="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <label for="profile_pic">Profile Picture</label>
+        <input type="file" id="profile_pic" placeholder="Profile Picture" name="picture" class="form-control">
+        <div>
+            <label for="date_of_birth">Date Of Birth</label>
+            <input type="date" name="date_of_birth" class="form-control">
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Edit Student</button>
+        </div>
+    </form>
+
+{% endblock %}

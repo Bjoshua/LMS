@@ -1,0 +1,42 @@
+{% extends 'profiles/Student Templates/base.html' %}
+{%block content%}
+<style>
+</style>
+<div>
+    <!-- <h2></h2> -->
+    <form action="" method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        {% for question in cbtqs %}
+            <div class="bg-danger mb-3 p-2">
+                <div>
+                    <h4>{{question.question}}</h4>
+                    <!-- <div class="form-check mt-2">
+                        <input class="form-check-input"  type="radio" name="Option1_{{question.id}}" id="" value="Option1" required>
+                        <label for="question_{{question.id}}" class="form-check-label" for="">{{question.option1}}</label>
+                    </div>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input"  type="radio" name="Option2_{{question.id}}" id="" value="Option2" required>
+                        <label for="" class="form-check-label" for="">{{question.option2}}</label>
+                    </div>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input"  type="radio" name="Option3_{{question.id}}" id="" value="Option3" required>
+                        <label for="" class="form-check-label" for="">{{question.option3}}</label>
+                    </div>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input"  type="radio" name="Option4_{{question.id}}" id="" value="Option4" required>
+                        <label for="" class="form-check-label" for="">{{question.option4}}</label>
+                    </div> -->
+                    <select name="answer_{{question.id}}" id="" class="form-select mt-3">
+                        <option value="Option1">{{question.option1}}</option>
+                        <option value="Option2">{{question.option2}}</option>
+                        <option value="Option3">{{question.option3}}</option>
+                        <option value="Option4">{{question.option4}}</option>
+                    </select>
+                </div>
+                
+            </div>
+        {%endfor%}
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+{% endblock content%}

@@ -1,0 +1,50 @@
+{% extends 'profiles/Student Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"> 
+    <link rel="stylesheet" href="{% static 'profile/admin/manage-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/manage-class.css' %}">
+        <style>
+            #mg-class{
+                background-color: white;
+                color: rgb(8, 0, 98);
+            }
+            .profile-pic{
+                /* margin-top: 20px; */
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                border: 2px solid white;
+            }
+    
+        </style>
+{% endblock css %}
+{% block  content%}
+<div class="parent-div">
+    <div class="table-div table">
+        <h3>Subjects</h3>
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th><p>ID</p></th>
+                    <th><p>Subject Name</p></th>
+                    <th><p>Subject Teacher</p></th>
+                    {% comment %} <th><p>Date Added</p></th> {% endcomment %}
+                    {% comment %} <th><p>Action</p></th> {% endcomment %}
+                </tr>
+                {% for subject in subjects%}
+                {% if subject.subj_class == request.user.student.student_class %}
+                    <tr>
+                        <td><p>{{subject.id}}</p></td>
+                        <td><p>{{subject.name}}</p></td>
+                        <td><p>{{subject.staff_id.username}} {{subject.staff_id.first_name}} {{subject.staff_id.last_name}}</p></td>
+                        <td><p>{{class.created_at}}</p></td>
+                    </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

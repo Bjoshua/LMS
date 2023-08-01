@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'profile/base2.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome-2/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    {% block css %}
+
+    {% endblock css %}
+    <title>Document</title>
+</head>
+<body class="pb-4" style="color: white;">
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow " >
+        <div class="navbar-brand col-md-3 col-lg-2 me-0 px-3 " style="color: white;"><i class="fa fa-school"></i> LM<b><u>S</u></b></div>
+        <button class="navbar-toggler position-absolute d-md-none collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="w-100 mt-sm-2 mt-md-0 justify-content-around d-flex flex-sm-row flex-column flex-md-row flex-lg-row">
+            <div class="nav-item text-nowrap col-sm-6 bg-danger">
+                {%block dashboard%}
+                
+                {%endblock%}
+            </div>
+            <div class="nav-item text-nowrap d-flex flex-row gap-2 align-items-center bg-success col-sm-6 p-2">
+                {%if user.user_type == "staff"%}
+                    <img src="{{user.staff.profile_pic}}" style="width: 20px; height: 20px; border-radius: 50%;">
+                    {% elif user.user_type == "student" %}
+                        {% if user.student.profile.pic%}
+                        <img src="{{user.student.profile_pic}}" style="width: 20px; height: 20px; border-radius: 50%;">
+                        {%endif%}
+                    {%else%}
+                        <img src="{{user.adminhod.profile_pic}}" style="width: 30px; height: 30px; border-radius: 50%;">
+                    {% endif %}
+                    {% block profile%}
+                        {%if user.user_type == "1"%}
+                            {% if user.first_name %}
+                            <h5><a href="{% url 'admin_profile' %}"  style="color: white; text-decoration: none;">{{request.user.first_name}} {{request.user.last_name}}</a></h5>
+                            {%else%}
+                            <h5 style="color: white; text-decoration: none;"><a href="{% url 'admin_profile' %}"  style="color: white; text-decoration: none;">{{request.user.username}}</a></h5>
+                            {%endif%}
+                        {% elif user.user_type == "staff"%}
+                        <!-- <div><img src="{{user.staff.profile_pic.url}}"></div> -->
+                        <h5 style="color: white; text-decoration: none;"><a href="{% url 'staff_update_profile' %}"  style="color: white; text-decoration: none;">{{request.user.first_name}} {{request.user.last_name}}</a></h5>
+                        
+                        {%else%}
+                        <h5 style="color: white; text-decoration: none;"><a href="{% url 'student_update_profile' %}" style="color: white; text-decoration: none;">{{request.user.first_name}} {{request.user.last_name}}</a></h5>
+                        {%endif%}
+                    {% endblock %}
+                        {% comment %} <p>kdkdk</p> {% endcomment %}
+                </div>
+        </div>
+        
+    </header>
+        
+            {%for message in messages%}
+                {%if message.tags == "success" %}
+                    <div class="alert alert-success alert-dismissible fade show mb-0" role="alert" id="messages-el">
+                        <p>{{message}}</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                    </div>
+                {%elif message.tags == "error" %}
+                <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert" id="messages-el">
+                    <p>{{message}}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% else %}
+                <div class="alert alert-primary alert-dismissible fade show mb-0" role="alert" id="messages-el">
+                    <p>{{message}}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                </div>
+                {%endif%}
+
+            {%endfor%}
+    <div class="container-fluid ps-1 h-100 " id="section">
+        {%for message in messages%}
+            {%if message.tags == "success" %}
+                <div class="alert alert-success alert-dismissible fade show mb-0" role="alert" id="messages-el">
+                    <p>{{message}}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                </div>
+            {%elif message.tags == "error" %}
+            <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert" id="messages-el">
+                <p>{{message}}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% else %}
+                <div class="alert alert-primary alert-dismissible fade show mb-0" role="alert" id="messages-el">
+                    <p>{{message}}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+                </div>
+            {%endif%}
+        {%endfor%}
+        <div class="row h-100 bg-dark overflow-scroll">
+            
+            <nav id="sidebarMenu" class="position-relative col-md-3 col-lg-3 overflow-scroll d-md-block p-0 pt-2 bg-dark sidebar border-secondary border-bottom collapse">
+                <div class=" position-sticky">
+                    <ul class="nav flex-column align-items-center" id="ul-el">
+                        {%block links%}
+                        
+                        {%endblock links%}
+                    </ul>
+                </div>
+                <div class="fade-bottom"></div>
+        
+            </nav>
+            <main class="position-relative col-md-9 ms-sm-auto col-lg-9 p-0 overflow-scroll" id="main">
+                <div class="navbar-nav w-100 bg-transparent d-flex flex-row justify-content-end gap-1 mt-2">
+                    <button class="btn btn-outline-primary w-25"><a href="{% url 'home'%}">Website</a></button>
+                    <button class="btn btn-danger w-25"><a href="{% url 'logout'%}">Logout</a></button>
+                </div>
+                <div class="d-flex w-100 h-100 bg-dark border-start border-secondary flex-column p-2 m-1">
+                    {%block content%}
+
+                    {%endblock content%} 
+                </div>
+                <div class="fade-bottom"></div>
+            </main>
+        </div>
+    </div>
+    
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    {% comment %} <script src="js/index.js"></script> {% endcomment %}
+    {%block js%}
+    
+    {% endblock js%}
+</body>
+</html>
+           

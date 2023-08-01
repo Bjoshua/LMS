@@ -1,0 +1,62 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <style>
+        #form-el{
+            display: none;
+        }
+        #form-el.active{
+            display: block;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        #aspirant-link{
+        background-color: rgb(3, 100, 174) !important;
+        }
+    </style>
+{% endblock css %}
+{% block content%}
+    <div class=" h-100 overflow-scroll">
+        <h3>Prospective Candidate Details</h3>
+        {% comment %} <button class="btn-success btn mt-2" id="btn-el"> <i class="fa fa-add"></i> Add Staff</button> {% endcomment %}
+        <div class="card-body table-responsive p-0 mt-3">
+            <table class="table table-success table-hover text-nowrap">
+                <tr>
+                    <th><p>ID</p></th>
+                    <th><p>Username</p></th>
+                    <th><p>Full Name</p></th>
+                    <th><p>Phone Number</p></th>
+                    <th><p>Email</p></th>
+                    <th><p>Date Registered</p></th>
+                    <th><p>Action</p></th>
+                </tr>
+                {% for staff in staffs%}
+                    <tr>
+                        <td><p>{{staff.admin.id}}</p></td>
+                        <td><p>{{staff.admin.username}}</p></td>
+                        <td><p>{{staff.name}}</p></td>
+                        <td><p>{{staff.phone_number}}</p></td>
+                        <td><p>{{staff.admin.email}}</p></td>
+                        <td><p>{{staff.date_registered}}</p></td>
+                        <td class="button-col">
+                            <a href="{% url 'passwordchange' user_id=staff.admin.id %}"><button class="password" style="background: blue;">Password Change</button></a>
+                            <!-- <a href="{% url 'passwordchange' user_id=staff.admin.id %}"><button class="approve" style="background: blue;">Approve as Student</button></a> -->
+                            <a href="{% url 'delete_staff' staff_id=staff.admin.id%}"><button class="delete">Delete</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}          
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block js%}
+    <script>
+        const btnEl = document.getElementById("btn-el")
+        const formEl = document.getElementById("form-el")
+        btnEl.addEventListener("click", function(){
+            formEl.classList.toggle("active")
+        })
+    </script>
+{% endblock %}

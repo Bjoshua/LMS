@@ -1,0 +1,149 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <style>
+        #form-el{
+            display: none;
+        }
+        #form-el.active{
+            display: block;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        #stud-feed-link{
+        background-color: rgb(3, 100, 174) !important;
+        }
+    </style>
+{% endblock css %}
+{% block content%}
+    <div class=" h-100 overflow-scroll">
+        <h3>Student Feedbacks</h3>
+        {% comment %} <button class="btn-success btn mt-2" id="btn-el"> <i class="fa fa-add"></i> Add Staff</button> {% endcomment %}
+        <div class="card-body table-responsive p-0 mt-3">
+            <table class="table table-success table-hover text-nowrap">
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Message</th>
+                    <th>Sent On</th>
+                    <th>Status</th>
+                    <th>Reply</th>
+                </tr>
+                {% for feedback in feedbacks %}
+                    <td>{{ feedback.student_id.admin.id }}</td>
+                    <td>{{ feedback.student_id.admin.first_name }} {{ feedback.student_id.admin.last_name }}</td>
+                    <!-- <td>{{ feedback.student_id.session_year_id.session_start_year }} - {{ feedback.student_id.session_year_id.session_end_year }}</td> -->
+                    <td>{{ feedback.feedback }}</td>
+                    <td>{{ feedback.created_at }}</td>
+                    <td>
+                        {% if feedback.feedback_reply == "" %}
+                            <p><button type="submit" class="reply" disabled="disabled" style="cursor: not-allowed; margin-top:5px; background-color:red; opacity:80%; color:black;"> Not Replied</button></p>
+                        {% else %}
+                            <p><button type="submit" class="reply" disabled="disabled" style="cursor: not-allowed; margin-top:5px; background-color:rgb(11, 130, 21); opacity:80%; color:black;">Replied</button></p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if feedback.feedback_reply == "" %}
+                            <form action="{% url 'student_feedback_message_reply' feedback_id=feedback.id%}" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="reply" id="" class="form-control text-box">
+                                <button type="submit" class="reply">Reply</button>
+                            </form>
+                        {% else %}
+                            <p>{{ feedback.feedback_reply }}</p>
+                        {% endif %}
+                        
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    <div>
+{% endblock %}
+{% comment %} {% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+        <style>
+            #stud-feedback{
+                background-color: white;
+                color: rgb(8, 0, 98);
+            }
+            .reply{
+                padding: 5px;
+                color: white;
+                background-color: green;
+                border-radius: 5px;
+            }
+        </style>
+{% endblock css %}
+{% block  content%}
+<div class="container-fluid" style="margin-top: 20px;">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Student's Feedbacks</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Message</th>
+                            <th>Sent On</th>
+                            <th>Status</th>
+                            <th>Reply</th>
+                        </tr>
+                        </thead>
+
+                        {% for feedback in feedbacks %}
+                        <tbody>
+                        <tr>
+                            <td>{{ feedback.id }}</td>
+                            <td>{{ feedback.student_id.admin.id }}</td>
+                            <td>{{ feedback.student_id.admin.first_name }} {{ feedback.student_id.admin.last_name }}</td>
+                            <!-- <td>{{ feedback.student_id.session_year_id.session_start_year }} - {{ feedback.student_id.session_year_id.session_end_year }}</td> -->
+                            <td>{{ feedback.feedback }}</td>
+                            <td>{{ feedback.created_at }}</td>
+                            <td>
+                                {% if feedback.feedback_reply == "" %}
+                                    <p><button type="submit" class="reply" disabled="disabled" style="cursor: not-allowed; margin-top:5px; background-color:red; opacity:80%; color:black;"> Not Replied</button></p>
+                                {% else %}
+                                    <p><button type="submit" class="reply" disabled="disabled" style="cursor: not-allowed; margin-top:5px; background-color:rgb(11, 130, 21); opacity:80%; color:black;">Replied</button></p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if feedback.feedback_reply == "" %}
+                                    <form action="{% url 'student_feedback_message_reply' feedback_id=feedback.id%}" method="post">
+                                        {% csrf_token %}
+                                        <input type="text" name="reply" id="" class="form-control text-box">
+                                        <button type="submit" class="reply">Reply</button>
+                                    </form>
+                                {% else %}
+                                    <p>{{ feedback.feedback_reply }}</p>
+                                                                            
+                                    
+                                {% endif %}
+                                
+                            </td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            
+            </div>
+            
+
+        </div>
+    </div>
+
+</div>
+{% endblock%} {% endcomment %}

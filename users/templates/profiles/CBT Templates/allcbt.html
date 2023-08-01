@@ -1,0 +1,42 @@
+{% extends 'profiles/Student Templates/base.html' %}
+{%block content%}
+{% block css %}
+<style>
+
+</style>
+{% endblock css%}
+    <div class="">
+        <h3 class="mb-3">CBTs</h3>
+        {%for cbt in cbts%}
+            <div class="p-3 bg-primary mb-3">
+                <h2 style="text-align: center;">{{cbt.name}}</h2>
+                <div class="table-div">
+                    <table class="table bg-primary text-nowrap table-hover mt-3 text-white">
+                        <tr>
+                            <th>Set By</th>
+                            <th>Questions</th>
+                            <th>Marks</th>
+                            <th>Duration</th>
+                            <th>Date</th>
+                        </tr>
+                        <tr>
+                            <td>{{cbt.studentclass.staff_id}}</td>
+                            <td>{{cbt.questions}}</td>
+                            <td>{{cbt.marks}}</td>
+                            <td>{{cbt.duration}}</td>
+                            <td>{{cbt.created_at.date}}</td>
+                        </tr>
+                    </table>
+                    
+                </div>
+                {% comment %} {%for cbtrs in cbtr%} {% endcomment %}
+                    {%if cbtr.0.cbt == cbt%}
+                        <a href="{% url 'view_score' cbtr_id=cbtr.0.id%}"><button class="btn btn-light w-100"><b>Check Result <i class="fa fa-arrow-right"></i> </b></button></a>
+                    {%else%}
+                        <a href="{% url 'take_cbt' cbt_id=cbt.id%}"><button class="btn btn-light w-100"><b>Take CBT</b></button></a>
+                    {%endif%}
+                {% comment %} {%endfor%} {% endcomment %}
+            </div>
+        {%endfor%}
+    </div>
+{% endblock content%}

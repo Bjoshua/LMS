@@ -1,0 +1,146 @@
+@font-face {
+    font-family: montserrat;
+    src: url(fonts/montserrat.ttf);
+}
+@font-face {
+    font-family: nerko;
+    src: url("fonts/nerko.ttf");
+}
+*{
+    font-family: montserrat;
+}
+html, body{
+    font-family: montserrat;
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+    padding: 0%;
+    overflow: hidden;
+}
+.message{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    position: absolute;
+    top: 50px;
+    background-color: red;
+    color: white;
+}
+body{
+    background-image: url(media/gva.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 105%;
+}
+h1{
+    /* color: rgb(8, 0, 98); */
+    color: white;
+    font-family: montserrat;
+    text-align: center;
+    font-size: 40px;
+    background-color: rgb(8, 0, 98);
+    border-bottom: 2px solid white;
+    margin-top: 0px;
+    padding-bottom: 10px;
+}
+.section{
+    width: 100%;
+    height: 80%;
+    /* border: 2px solid black; */
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+    align-items: center;
+}
+form{
+    width: 100%;
+    height: 100%;
+}
+.account-div, .login-div{
+    width: 40%;
+    /* border: inherit; */
+    /* flex-basis: 50%; */
+    display: flex;
+}
+.account-div{
+    flex-basis: 60%;
+    background-color: rgb(8, 0, 98);
+    border: 5px solid white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+}
+.account-div img{
+    width: 100%;
+}
+.account-div h3{
+    position: absolute;
+    color: white;
+    top: 8px;
+}
+.account-div input{
+    position: absolute;
+    bottom: -2%;
+    right: -2%;
+}
+.account-div p{
+    position: absolute;
+    color: white;
+}
+.student, .teacher{
+    width: 30%;
+    border: 2px solid white;
+    margin-top: 20px;
+    position: relative;
+}
+.login-div{
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 70%;
+    margin-top: 1%;
+    background-color: rgb(8, 0, 98);
+    border: 5px solid white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    /* box-shadow: 0px 4px 0px white; */
+}
+.input-div{
+    width: 90%;
+    margin-top: 3%;
+}
+#password-div{
+    margin-top: 2%;
+}
+#rem-div{
+    text-align: left;
+    /* background-color: aqua; */
+    width: 90%;
+    margin-top: 2%;
+    color: white;
+    
+}
+button{
+    width: 90%;
+}
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+.form-floating{
+    font-weight: bold;
+}
+.form-floating input{
+    font-weight: bold;
+    border: none;
+}
+.form-floating label{
+    /* background-color: transparent; */
+}

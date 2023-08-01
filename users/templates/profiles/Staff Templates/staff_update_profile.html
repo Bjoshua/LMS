@@ -1,0 +1,27 @@
+{% extends 'profiles/Staff Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #profile{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+    </style>
+
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Update Profile</h3>
+    <form role="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <label for="profile_pic">Profile Picture</label>
+        <input type="file" id="profile_pic" placeholder="Profile Picture" name="profile_pic" class="form-control">
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Update Profile</button>
+        </div>
+    </form>
+
+{% endblock %}

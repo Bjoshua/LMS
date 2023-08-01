@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block content %}
+    <link rel="stylesheet" href="{% static 'main.css'%}">
+        <section class="sec-1">
+            <div class="slider-div">
+                <div class="slider">
+                    <div class="slides" id="slide-1" style="background-image: url({% static 'media/bg8.jpg' %});">
+                        <div class="blur" id="sec-1-blur"></div>
+                        
+                            <h1>Welcome To</h1><p> Glorious Vision Academy </p>
+                        
+                    </div>
+                    <div class="slides" id="slide-2" style="background-image: url({% static 'media/bg1.jpg' %});">
+                        <div class="blur" id="sec-2-blur"></div>
+                        
+                            <h1>Our Motto:</h1><p>Knowledge is Light</p>
+                        
+                        </div>
+                    <div class="slides" id="slide-3" style="background-image: url({% static 'media/bg12.jpg' %});">
+                        <div class="blur" id="sec-3-blur"></div>
+                        
+                            <h1>Adequate Facilities</h1><p>Just mention it, we have it here.</p>
+                        
+                    </div>
+                    <div class="slides" id="slide-4" style="background-image: url({% static 'media/bg2.jpg' %});">
+                        <div class="blur" id="sec-4-blur"></div>
+                        
+                            <h1>Unity</h1><p>Unity is a CORE value we'll make your children learn that</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <div class="mid-boxes" id="our-mission">
+            <img src="{% static 'media/black-bulb.png' %}">
+            <h1>Our Mission</h1>
+            <p>
+                Glorious Vison Academy is an open-admission private school that aims to
+                prepares all students for University admissions and successful
+                careers. Our mission is to produces  educated youths and teenagers who 
+                will be useful to themselves and to the society and the world at large.
+            </p>
+        </div>
+        <section class="sec-2">
+            {% comment %} <div class="offer-img">
+                <img src="{% static 'media/transparent-offer.png' %}">
+            </div> {% endcomment %}
+            <div style="width: 100%; height: fit-content; text-align: center;">
+                <h1>What We Offer</h1>
+            </div>
+
+            <div class="offering-tray">
+                <div class="offer-groups" id="offer-group-1">
+                    <div class="offers" id="offers-1">
+                        <h1>Excellent Education</h1>
+                        <p>We offer the best and quality education you can find around at an affordable
+                            price to get your kids and teens started</p>
+                    </div>
+                    <div class="offers" id="offers-2">
+                        <h1>Top-notch Teachers</h1>
+                        <p>We have a group of qualified degree holders in their resective fields as
+                            teachers and you can count on them to build your children
+                        </p>
+                    </div>
+                </div>
+                <div class="offer-groups" id="offer-group-3">
+                    <div class="offers" id="offers-5">
+                        <h1>Club & Societies</h1>
+                        <p>We offer a medium for our students to come together in their various clubs and societies to learn new things and develop themselves collectively</p>
+                    </div>
+                </div>
+                <div class="offer-groups" id="offer-group-2">
+                    <div class="offers" id="offers-4">
+                        <h1>Fantastic facilities</h1>
+                        <p>We've absolutely got all the facilities needed to aid the learning of your children, ranging from a geographical garden to a laboratory</p>
+                    </div>
+                    <div class="offers" id="offers-3">
+                        <h1>Super Sport Activities</h1>
+                        <p>Time for your athletic Kids and Teens to flex their muscles and talents. We've got indoor games and outdoor games</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="mid-boxes" id="our-vision">
+            <img src="{% static 'media/eagle-eye.png' %}">
+            <h1>Our Vision</h1>
+            <p>
+               We envision a future filled with educated, disciplined, God-fearing and well to do Young Adults. 
+            </p>
+        </div>
+        <section class="sec-3">
+            <div class="upcomming"><h1>Upcoming events</h1><a href="{% url 'events' %}">Check all events<i class="fa fa-arrow-right"></i></a></div>
+            <div class="slider-div">
+                <div class="slider">
+                    <div class="slides" id="slide-1" style="background-image: url({% static 'media/track.jpg' %});">
+                        <div class="blur">
+
+                        </div>
+                        <h1>Inter House Sport</h1>
+                        <p>The long awaited Inter-House Sport is round the corner. Four houses clashes against
+                            each other in various activities and an overall ranking is announced at the end of
+                            all competitions. The winner takes all the glory. The competition will be starting
+                            on the 23rd of May, 2023 and closing up on the 1st of June, 2023.
+                        </p>
+                    </div>
+                    <div class="slides" id="slide-2" style="background-image: url({% static 'media/debate-1.webp' %});">
+                        <div class="blur">
+
+                        </div>
+                        <h1>Senior Debate(SS3 vs SS2)</h1>
+                        <p>The two most senior classes in the college lock horns in a debate on the topic 
+                            "Local languages convey more knowledge to students and help them understand and 
+                            assimilate what they learn faster and effectively. SS2 is supporting this motion
+                            while SS3 will be take the role of the opposition".This will be taking place in the school hall on friday, 5th of may, 2023
+                        </p>
+                    </div>
+                    <div class="slides" id="slide-3" style="background-image: url({% static 'media/career-day.png' %});">
+                        <div class="blur">
+
+                        </div>
+                        <h1>Career Day</h1>
+                        <p>A day for the young kids to express their ambitions by dressing up in accordance
+                            to their dream career. Definitely an exciting day for the young ones to anticipate. Taking place on 14th of May, 2023. 
+                        </p>
+                    </div>
+                    <div class="slides" id="slide-4" style="background-image: url({% static 'media/prefect-badge.png' %});">
+                        <div class="blur"></div>
+                        <h1>New Prefects come on board</h1>
+                        <p>Due to the inevitable passing on to another level of the current SS3 students, the school will be selecting a few 
+                            suitable candidates from the current SS2 students on 31st of June, 2023 to take up the task and steer the
+                             boat of the school in an excellent direction.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <div class="mid-boxes" id="quote">
+            <img src="{% static 'media/book3.jpg' %}">
+            <h1>Quote</h1>
+            <p>
+              "Education is never too expensive. If you think it is try Ignorance, it will cost you more han you can pay"
+              <p>By: Albert Einstein</p>
+            </p>
+        </div> -->
+{% endblock %}

@@ -1,0 +1,144 @@
+html, body{
+    font-family: montserrat;
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+    padding: 0%;
+    overflow-x: hidden;
+}
+section{
+    width: 100%;
+    /* min-height: 600px; */
+    height: 100%;
+    /* max-height: 1280px; */
+    position: relative;
+    margin: 0 !important;
+
+}
+.blur{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.63);
+    
+    z-index: 0;
+}
+#offers{
+    border-bottom: 2px solid white;
+}
+
+.sec-1{
+    /* background-color: rgba(255, 255, 255, 0.63); */
+    /* background-position: center; */
+    background-repeat: repeat;
+    /* background-size: cover; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    padding-right: 20px !important;
+    background-image:radial-gradient(red, orange, yellow, green, blue, indigo,violet );
+
+}
+.offer-cont{
+    flex: 1;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#offer-2{
+    flex-direction: row-reverse;
+}
+.section-0{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(media/jumpingman2.jpg);
+}
+.section-0 h1, .section-0 p{
+    z-index: 1;
+    font-size: x-large;
+}
+.section-0 h1{
+    font-size: 44px;
+}
+.offer-text{
+    width: 90%;
+    height: 48%;
+    padding: 0% 2%;
+    background-color: rgb(8, 0, 98);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom-right-radius: 30px;
+    /* border-bottom: 4px solid white; */
+}
+.offer-text p, .offer-text h1{
+    padding-left: 10px;
+}
+
+.offer-text h1{
+    border-left: 3px solid aqua;
+
+}
+.offer-img1{
+    flex-basis: 40%;
+    /* border: 2px solid black; */
+    height: 100%;
+
+}
+.offer-img1 img{
+    width: 100%;
+    height: 100%;
+}
+.sec-5{
+    background-image: linear-gradient(180deg, rgb(8, 0, 98), white);
+    background-repeat: none;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.sec-5-1{
+    height: 50%;
+    width: 100%;
+    /* border: 2px solid blue; */
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-between;
+}
+.sec-5-1 div a{
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(8, 0, 98);
+}
+.sec-5-1 img{
+    height: 200%;
+    width: 50%;
+    margin-left: -11%;
+    /* position: absolute; */
+    
+}
+.sec-5-1 div{
+    /* position: absolute; */
+    width: 50%;
+    height: 50%;
+    background-color: rgba(202, 198, 250, 0.507);
+    text-align: center;  
+}

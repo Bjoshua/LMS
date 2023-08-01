@@ -1,0 +1,104 @@
+{% extends 'profiles/base.html'%}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block dashboard %}
+    <a href="{% url 'staff_home'%}" class="nav-link px-3 d-flex align-items-center"><i class="fa fa-user me-2"></i><h5>Staff Dashboard</h5></a>
+    <!-- <a href="{% url 'room_access' staff_id=request.user.staff.id%}"  class="chat-link"><i class="fas fa-comments chat"></i></a> -->
+{% endblock %}
+{% block links %}
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_home' %}" class="nav-link gap-2 active d-flex align-items-center" id="home">
+            <p class="text" style="color: white;">Home</p>
+        </a>
+    </li>  
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_manage_stud' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-managestud">
+            <p class="text" style="color: white;">Students</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_manage_class' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-manageclass">
+            <p class="text" style="color: white;">Manage Class</p>
+        </a>    
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_add_assignment' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-ass">
+            <p class="text" style="color: white;">Give Assignment</p>
+        </a>   
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_add_test' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-cl">
+            <p class="text" style="color: white;">Set Test</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_add_exam' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-exam">
+            <p class="text" style="color: white;">Set Exam</p>    
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_add_lectures' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-lec">
+            <p class="text" style="color: white;">Give Lecture</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_assignment_view' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-subass">
+            <p class="text" style="color: white;">Assignments</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_test_view' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-subtest">
+            <p class="text" style="color: white;">Tests</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_exam_view' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-subex">
+            <p class="text" style="color: white;">Exams</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'create_cbt' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-subex">
+            <p class="text" style="color: white;">CBT Setup</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_marked_assignment_view' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-markass">
+            <p class="text" style="color: white;">Marked Assignments</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_marked_test_view' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-marktest">
+            <p class="text" style="color: white;">Marked Tests</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_marked_examination_view' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-markex">
+            <p class="text" style="color: white;">Marked Exams</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_lecture_view' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-cla">
+            <p class="text" style="color: white;">Lecture</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_leave' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-leave">
+            <p class="text" style="color: white;">Apply for Leave</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_feedback' %}" class="nav-link gap-2 active d-flex align-items-center" id="mg-feed">
+            <p class="text" style="color: white;">Send Feedback</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{%  url 'staff_update_profile' %}" class="nav-link gap-2 active d-flex align-items-center" id="profile">
+            <p class="text" style="color: white;">Profile Update</p>
+        </a>
+    </li>
+{% endblock links %}
+{% block content %}
+
+{%endblock content%}

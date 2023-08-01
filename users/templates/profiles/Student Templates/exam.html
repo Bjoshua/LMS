@@ -1,0 +1,69 @@
+{% extends 'profiles/Student Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #exam{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+        .profile-pic{
+            /* margin-top: 20px; */
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+    </style>
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Examination</h3>
+    {% for test in examination %}
+        {% if test.form_class == request.user.student.student_class %}
+            {% comment %} {% if student %}
+                hi
+            {% else %} {% endcomment %}
+            <h2 style="margin-top: 3%;">{{test.subject.name}}</h2>
+
+            <div class="container" style="display: flex; flex-direction:row; background-color: beige;">
+                <div class="side" style="width:50%; height: 100%; padding: 1%;">
+                    <h3>Examination Question</h3>
+                    <textarea disabled cols="40" rows="10">{{test.examination_text}}</textarea>
+                    {% if test.test_file %}
+                        <a href="{{test.test_file.url}}"download>Get Examination File</a>
+                    {% endif %}
+                </div>
+                <form role="form" method="POST" enctype="multipart/form-data" style="width:50%; height: 100%;">
+                    {% csrf_token %}
+                    <h2>Answer To Examination</h2>
+                    <input type="hidden" name="exam_id" value="{{test.id}}">
+                    <input type="hidden" name="subject" value="{{test.subject.id}}">
+                    {{ form }}
+                    {%for aa in form %}
+                        {{aa.helptext}}
+                    {% endfor %}
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary" id="submit-btn">Submit Exam</button>
+                    </div>
+                </form>
+            </div>
+                {% comment %} {% endif %} {% endcomment %}
+        {% endif %}
+    {% endfor %}
+{% comment %} 
+
+
+    <form role="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        {%for aa in form %}
+            {{aa.helptext}}
+        {% endfor %}
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Submit Examination</button>
+        </div>
+    </form> {% endcomment %}
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'profiles/base.html' %}
+{%block content%}
+<style>
+    .profile_pic{
+        border-radius: 50%;
+        height: 200px;
+        width: 200px;
+    }
+    .edit-user{
+        position: absolute;
+        bottom: 40px;
+        right: 20px;
+        background-color: green;
+        padding: 5px;
+        border-radius: 50%;
+    }
+</style>
+<div class="bg-danger d-flex flex-column align-items-center p-2 m-0">
+    <div style="position: relative; margin-bottom: 10px;">
+        <img src="{{users.0.profile_pic}}" alt="" class="profile_pic">
+        <h3 style="text-align: center;">{{users.0.admin.first_name}} {{users.0.admin.last_name}}</h3>
+        <i class="fa fa-user-edit edit-user" ></i>
+    </div>
+    <div class="row p-3 w-100">
+        <p class="bg-success mb-1 me-1 pe-2  col-auto" style="border-radius: 5px;"><i class="fa fa-user-alt p-2 m-0 bg-warning" style="margin-right: 5px; border-top-left-radius: 5px; border-bottom-left-radius: 5px;"></i> {{users.0.admin.username}}</p>
+        <p class="bg-success mb-1 me-1 pe-2  col-auto " style="border-radius: 5px;"><i class="fa fa-envelope p-2 m-0 bg-warning" style="margin-right: 5px; border-top-left-radius: 5px; border-bottom-left-radius: 5px;"></i> {{users.0.admin.email}}</p>
+        <p class="bg-success mb-1 me-1 pe-2  col-auto" style="border-radius: 5px;"><i class="fa fa-calendar-check p-2 m-0 bg-warning" style="margin-right: 5px; border-top-left-radius: 5px; border-bottom-left-radius: 5px;"></i> 
+            {%if user.user_type == '1'%}
+                {{users.0.admin.adminhod.created_at.date}}
+            {%elif user.user_type == 'staff'%}
+                {{users.0.admin.staff.created_at.date}}
+            {%elif user.user_type == 'student'%}
+                {{users.0.admin.student.created_at.date}}
+            {%endif%}
+        </p>
+        <p class="bg-success mb-1 me-1 pe-2 col-auto" style="border-radius: 5px;"><i class="fa fa-sign-in-alt p-2 m-0 bg-warning" style="margin-right: 5px; border-top-left-radius: 5px; border-bottom-left-radius: 5px;"></i> {{users.0.admin.last_login}}</p>
+
+    </div>
+    
+</div>
+<div class="bg-info">
+    {%if user.user_type == '1'%}
+        
+    {%elif user.user_type == 'staff'%}
+
+    {%elif user.user_type == 'student'%}
+        <p>Date of Birth: {{users.0.admin.student.date_of_birth}}</p>
+        <p>Age: {{users.0.admin.student.age}}</p>
+        <p>Gender: {{users.0.admin.student.gender}}</p>
+        <p>Address: {{users.0.admin.student.address}}</p>
+        <p>Parent's Name: {{users.0.admin.student.parent_name}}</p>
+        <p>Parent's Phone Number: {{users.0.admin.student.parents_phone_number}}</p>
+        <p>Department: {{users.0.admin.student.department_id}}</p>
+        <p>Subjects: {{users.0.admin.student.subjects.count}}</p>
+        <p>Class: {{users.0.admin.student.student_class}}</p>
+        <p>Class Teacher: {{users.0.admin.student.student_class.staff_id}}</p>
+        <p>Session Joined: {{users.0.admin.student.session_year_id}}</p>
+    {%endif%}
+</div>
+<div class="bg-success">
+    {%if user.user_type == '1'%}
+        
+    {%elif user.user_type == 'staff'%}
+
+    {%elif user.user_type == 'student'%}
+        <div class="table-responsive">
+            <table class="table table-primary table-hover text-nowrap">
+                <thead>
+                    <th>Session</th>
+                    <th>Assignment Score</th>
+                    <th>Project Score</th>
+                    <th>1st Test Score</th>
+                    <th>2nd Test Score</th>
+                    <th>Exam Score</th>
+                    <th>Total Score</th>
+                    <th>Grade</th>
+                    <th>Rank</th>
+                </thead>
+                <tbody>
+                    {% for result in results%}
+                        <td>{{result.0.session}}</td>
+                        <td>{{result.0.subject_assignment_marks}}</td>
+                        <td>{{result.0.subject_project_marks}}</td>
+                        <td>{{result.0.subject_1st_test_marks}}</td>
+                        <td>{{result.0.subject_2nd_test_marks}}</td>
+                        <td>{{result.0.subject_exam_marks}}</td>
+                        <td>{{result.0.subject_total_marks}}</td>
+                        <td>{{result.0.grade}}</td>
+
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <p>Performance Chart</p>
+        </div>
+    {%endif%}
+</div>
+{%endblock%}
+
+{% comment %} <form method="POST">
+    {% csrf_token %}
+    <div>
+        <label for="subjects">Subjects</label>
+        <select name="data" id="" class="form-select">
+            <option value="1" class="form-check-input">Maths</option>
+            <option value="2" class="form-check-input">eng</option>
+            <option value="3" class="form-check-input">Bio</option>
+            <input type="radio" name="ddll" id="">
+        </select>
+        <!-- <select name="data" id="" multiple>
+            <option value=""><input type="radio" name="data3" id="" value="1"></option>
+            <option value=""><input type="radio" name="data3" id="" value="2"></option>
+            <option value=""><input type="radio" name="data3" id="" value="3"></option>
+            <option value=""><input type="radio" name="data3" id="" value="4"></option>
+        </select> -->
+    </div>
+    <button type="submit">Submit</button>
+</form> {% endcomment %}

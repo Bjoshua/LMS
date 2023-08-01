@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>LOGIN</h1>
+    {% for message in messages %}
+        <div class="message">{{message}}</div>
+    {% endfor %}
+    <form action = "{% url 'login_user'%}" method="POST">
+        {% csrf_token %}
+        <section class="section">
+            <div class="login-div">
+                <div class="input-div">
+                    <div class="form-floating" id="id-div">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Enter your Username" name="username">
+                        <label for="floatingInput">Username</label>
+                    </div>
+                
+                    <div class="form-floating" id="password-div">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Enter your password" name="password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                </div>
+                <div class="checkbox mb-3" id="rem-div">
+                    <label>
+                    <input type="checkbox" value="remember-me" id="rem-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary" type="submit" id="login-btn">Log in</button>
+                <a href={% url "home" %}>Back to website</a>
+                <a href={% url "register" %}>Do not have an account Register</a>
+            </div>
+            <script>
+                 var selectedIndex = -1;
+                    var box1 = document.querySelector('.box1');
+                    var box2 = document.querySelector('.box2');
+                    var box1checkbox = document.querySelector('.check1');
+                    var box2checkbox = document.querySelector('.check2');
+                    // console.log(box1checkbox);
+                    // box1.addEventListener('click', () => console.log("i"));
+                    
+                    box1.addEventListener('click', () => x(0));
+                    box2.addEventListener('click', () => x(1));
+                // function checker(){
+                //     console.log("Checker Called");
+                // }
+                function x(i){
+                  selectedIndex = i;
+                  if(selectedIndex == 0){
+                    
+                    box1checkbox.checked = true;
+                    box2checkbox.checked = false;
+                    box1checkbox.attributes.checked = true;
+
+                    console.log(box1checkbox.attributes.checked);
+
+                  }else if(selectedIndex == 1){
+                    box2checkbox.checked= true;
+                    box1checkbox.checked = false;
+                    box2checkbox.attributes.checked = true;
+                    console.log(box2checkbox.attributes.checked);
+                  }
+                  else if(selectedIndex == -1){
+                        box1checkbox.checked = false;
+                    }
+                }
+
+                // x(9);
+                // document.onload(x());
+            </script>
+        </section>
+    </form> 
+</body>
+</html>

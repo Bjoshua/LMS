@@ -1,0 +1,53 @@
+{% extends 'profiles/Staff Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #mg-subex{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+    </style>
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Submitted Examination</h3>
+    {% for assign in submit %}
+        {% if assign.score %}
+        {% else %}
+            <div class="container" style="margin-top: 45px; background-color: beige;">
+            {% if assign.submitted_by.student_class == request.user.staff.form_class %}
+            {% if assign.exam.created_by.id == request.user.staff.id %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ assign.id }}" id="">
+                    <p>Examination Subject: <h2>{{ assign.subject.name }}</h2></p>
+                    <input type="hidden" name="subject" value="{{ assign.subject.id }}" id="">
+                    <input type="hidden" name="id" value="{{ assign.id }}" id="">
+                    <input type="hidden" class="form-control" name="submitted_assignment_text" value="{{ assign.submitted_exam_text }}">
+
+
+                    <p>Examination Submitted By: <h2>{{ assign.submitted_by.admin.username }} {{ assign.submitted_by.admin.first_name }} {{ assign.submitted_by.admin.last_name}}</h2></p>
+                    <p>Date Submitted: <h2>{{ assign.created_at }} </h2></p>
+                    <input type="hidden" name="submitted_by" value="{{ assign.submitted_by.id }}" id="">
+
+                    {% if assign.submitted_examination_file %}
+                        <input class="form-control" type="hidden" name="submitted_examination_file" value="{{assign.submitted_exam_file.url}}" id="">
+                        <p>Examination file:
+                        <a href="{{ assign.submitted_exam_file.url }}" download>
+                            Download Examination File
+                        </a></p>
+                    {% endif %}
+                    <textarea disabled class="form-control" cols="50" rows="10" name="submitted_examination_text">{{ assign.submitted_exam_text }}</textarea>
+                    <input type="number" class="form-control" name="score" placeholder="Score" id="id_email">
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary" id="submit-btn">Mark Examination</button>
+                    </div>
+            {% endif %}
+            {% endif %}
+        {% endif %}
+            </form>
+        </div>            
+    {% endfor %}
+{% endblock %}

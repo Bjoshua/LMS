@@ -1,0 +1,71 @@
+{% extends 'profiles/Staff Templates/base.html' %}
+    {% load static %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'profile/students/feedback.css' %}">
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+        <style>
+            #mg-feed{
+                background-color: white;
+                color: rgb(8, 0, 98);
+            }
+        </style>
+    
+    {% endblock %}
+    {% block content %}
+            <h3>Feedbacks and Suggestions</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label>Feedback:</label>
+                        <textarea name="feedback" class="form-control" rows="6" placeholder="Leave Messge"></textarea>
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                </div>
+
+            </form>
+
+            
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Feedback History</h3>
+                        </div>
+
+                        <div class="card-body">
+                        <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead-heavy">
+                                    <tr>
+                                        <th>#ID</th>
+                                        <th>Date</th>
+                                        <th>Feedback</th>
+                                        <th>Reply</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                    {% for feedback in feedbacks %}
+                                    <tr>
+                                        <td>{{ feedback.id }}</td>
+                                        <td>{{ feedback.created_at }}</td>
+                                        <td>{{ feedback.feedback }}</td>
+                                        <td>{{ feedback.feedback_reply }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    {% endblock %}

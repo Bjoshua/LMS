@@ -1,0 +1,116 @@
+{% extends 'profiles/Staff Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <style>
+        #form-el{
+            display: none;
+        }
+        #form-el.active{
+            display: block;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        #staff-link{
+        background-color: rgb(3, 100, 174) !important;
+        }
+    </style>
+{% endblock css %}
+{% block content%}
+    <div class=" h-100 overflow-scroll">
+        <h3>Student Details</h3>
+        {% for subject in subjects %}
+        <h4>{{subject.name}}</h4>
+        <div class="card-body table-responsive p-0 mt-3">
+            <table class="table table-success table-hover text-nowrap">
+                <tr class="">
+                    <tr>
+                        {% comment %} <th><p>ID</p></th> {% endcomment %}
+                        <th><p>Full Name</p></th>
+                        <th><p>Test</p></th>
+                        <th><p>Examination</p></th>
+                        <th><p>Total</p></th>
+                        <th><p>Grade</p></th>
+                        <!-- <th><p>Comment</p></th> -->
+                    </tr>
+                </tr>
+                {% for student in students %}
+                    <tr>
+                        {% comment %} <td><p>{{student.admin.id}}</p></td> {% endcomment %}
+                        <td><p>{{student.admin.first_name}} {{student.admin.last_name}}</p></td>
+                        {%if sub_tests%}
+                            {% for test in sub_tests %}
+                                {% if test.subject.name == subject.name and test.test == get_test %}
+                                    <td><p>{{test.score}}</p></td>
+                                {% endif %}
+                            {% endfor %}
+                        {%else%}
+                            <td>0</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}         
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content%}
+
+{% block js%}
+    <script>
+        const btnEl = document.getElementById("btn-el")
+        const formEl = document.getElementById("form-el")
+        btnEl.addEventListener("click", function(){
+            formEl.classList.toggle("active")
+        })
+    </script>
+{% endblock %}
+
+
+{% comment %} {% extends 'profiles/Staff Templates/base.html' %}
+{% load static %}
+{% block css %}
+    <style>
+        #mg-manageclass{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+    </style>
+{% endblock css %}
+{% block content%}
+    <div class="parent-div">
+        <h1 style="margin-bottom: 20px;">Students Details</h1>
+        {% for subject in subjects %}
+        <div class="table-div" style="margin-bottom: 40px;">
+        <h2 >{{subject.name}}</h2>
+
+            <div class="table-box">
+                <table>
+                    <tr>
+                        <th><p>ID</p></th>
+                        <th><p>Full Name</p></th>
+                        <th><p>Test</p></th>
+                        <th><p>Examination</p></th>
+                        <th><p>Total</p></th>
+                        <th><p>Grade</p></th>
+                        <!-- <th><p>Comment</p></th> -->
+                    </tr>
+                    {% for student in students %}
+                    <tr>
+  
+                    <td><p>{{student.admin.id}}</p></td>
+                    <td><p>{{student.admin.first_name}} {{student.admin.last_name}}</p></td>
+                    {% for test in sub_tests %}
+                        {% if test.subject.name == subject.name and test.test == get_test %}
+                            <td><p>{{test.score}}</p></td>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %} {% endcomment %}

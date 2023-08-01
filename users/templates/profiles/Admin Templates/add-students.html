@@ -1,0 +1,21 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Add Student</h3>
+    <form role="form" method="POST" action="{% url 'add_stud' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <label for="profile_pic">Profile Picture</label>
+        <input type="file" id="profile_pic" placeholder="Profile Picture" name="profile_pic" class="form-control">
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Add Student</button>
+        </div>
+    </form>
+
+{% endblock %}

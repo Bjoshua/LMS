@@ -1,0 +1,63 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <style>
+        #form-el{
+            display: none;
+        }
+        #form-el.active{
+            display: block;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        #assessment-link{
+            background-color: rgb(3, 100, 174) !important;
+        }
+    </style>
+{% endblock css %}
+{% block content%}
+    <div class=" h-100 overflow-scroll">
+        <h3>Assessments</h3>
+        <button class="btn-success btn mt-2" id="btn-el"> <i class="fa fa-add"></i> Create Assessment</button>
+        <form action="" method="POST" class="mt-3" id="form-el" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label for="" class="form-label">Name</label>
+                <input type="text" name="name" id="" class="form-control">
+            </div>
+            <div>
+                <label for="" class="form-label">Total Marks</label>
+                <input type="number" name="total_marks" id="" class="form-control">
+            </div>
+            <button class="btn-primary btn mt-3">Submit</button>
+        </form>
+        <div class="card-body table-responsive p-0 mt-3">
+            <table class="table table-success table-hover text-nowrap">
+                <tr>
+                    <th>Name</th>
+                    <th>Total Marks</th>
+                </tr>
+                {% for assessment in assessments%}
+                    <tr>
+                        <td>{{assessment.name}}</td>
+                        <td>{{assessment.total_marks}}</td>
+                        <td>{{assessment.created_at}}</td>
+                        <td><button class="btn btn-primary"><a href="{% url 'admin_edit_class' class_id=class.id %}">Edit</a> </button></td>                 
+                        <td><button class="btn btn-danger"><a href="{% url 'delete_class' class_id=class.id%}">Delete</a></button></td>                 
+                    </tr>
+                {%endfor%}          
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block js%}
+    <script>
+        const btnEl = document.getElementById("btn-el")
+        const formEl = document.getElementById("form-el")
+        btnEl.addEventListener("click", function(){
+            formEl.classList.toggle("active")
+        })
+    </script>
+{% endblock %}

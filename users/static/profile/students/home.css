@@ -1,0 +1,83 @@
+#main-sec{
+    color: rgb(8, 0, 98);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#home-link{
+    background-color: white;
+    color: rgb(8, 0, 98);
+}
+.user-details{
+    /* background-color: aqua; */
+    height: fit-content;
+    /* border-radius: 20px; */
+    width: 40%;
+    padding: 10px 10px ;
+    margin-top: 20px;
+    /* display: inline-block; */
+}
+.user-details h2{
+    background-color: rgb(8, 0, 98);
+    color: white;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+}
+.profile-pic{
+    /* margin-top: 20px; */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.details{
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(8, 0, 98);
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.details h3{
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 0px;
+}
+.details h3 span{
+    font-size: 13px;
+    font-weight: 400;
+    margin-left: 5px;
+}
+.subject-table{
+    margin-top: 30px;
+    width: 50%;
+}
+.subject-table table{
+    width: 100%;
+    /* border: 2px solid rgb(8, 0, 98); */
+    column-width: 50px;
+}
+table td{
+    /* border: 2px solid black; */
+    text-align: center;
+}
+table tr:nth-child(even){
+    background-color: rgb(8, 0, 98);
+    color: white;
+}
+table tr:nth-child(odd){
+    background-color: rgb(173, 167, 241);
+    color: rgb(8, 0, 98);
+}
+.col-2{
+    /* padding-left: 200px; */
+    font-size: 14px;
+}

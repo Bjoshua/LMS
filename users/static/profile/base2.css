@@ -1,0 +1,102 @@
+/* MYORIGINAL */
+
+@font-face {
+    font-family: montserrat;
+    src: url(../fonts/montserrat.ttf);
+}
+::-webkit-scrollbar{
+    display: none;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: montserrat;
+}
+body,html{
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+}
+a{
+    text-decoration: none !important;
+    color: white !important;
+}
+/* To display messages from the backend */
+.messages-el{
+    height: 20px;
+    overflow: hidden;
+    position: relative;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+}
+.messages-el p{
+    width: max-content;
+}
+
+@keyframes slide{
+    0%{transform: translateX(100%);}
+    100%{transform: translateX(-100%);}
+
+}
+
+#error-msg{
+    background-color: red;
+    color: white;  
+}
+#success-msg{
+    background-color: green;
+    color: white;  
+}
+#other-msg{
+    background-color: blue;
+    color: white;  
+}
+#submit-btn{
+    background-color: rgb(8, 0, 98);
+    margin-top: 10px;
+    margin-left: -10px;
+}
+
+#section{
+    margin: 0 !important;
+    /* padding: 0; */
+    /* padding-bottom: 10px; */
+}
+p, h1, h2, h3, h4, h5, h6{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+#sidebarMenu, #main{
+    max-height: 100% !important;
+}
+#sidebarMenu{
+    /* padding-bottom: 40px !important; */
+}
+
+.cm-logo{
+    border-radius: 2px;
+}
+.navbar .navbar-toggler {
+    top: .25rem;
+    right: 1rem;
+}
+.li-el{
+    width: 95%;
+    background-color: rgb(2, 143, 250);
+    border-radius: 5px;
+    /* border-bottom-right-radius: 20px; */
+    font-weight: 600;
+    z-index: 0;
+    margin-top: 10px;
+}
+#ul-el{
+    z-index: 0;
+}
+
+.li-el:hover{
+    background-color: rgb(3, 100, 174);
+}
+

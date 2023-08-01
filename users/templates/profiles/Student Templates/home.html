@@ -1,0 +1,69 @@
+{% extends 'profiles/Student Templates/base.html' %}
+    {% load static %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'profile/students/home.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"> -->
+        
+    {% endblock %}
+    {% block content %}
+        <style>
+            .profile-div{
+                position: relative;
+            }
+            .edit-icon{
+                position: absolute;
+                background-color: green;
+                color: white;
+                font-size: 12px;
+                padding: 5px;
+                padding-left: 6px;
+                border-radius: 50%;
+                border: 2px solid white;
+                bottom: 10px;
+                left: 90px;
+            }
+        </style>
+        <div class="user-details">
+            <h2>Student Details</h2>
+            <div class="details">
+                {% if user.student.profile_pic %}
+                    <div class="profile-div">
+                        <img src="{{user.student.profile_pic.url}}"  width='40px' height='40px' style=" border-radius: 50%; border: 2px solid black;"  class="profile-pic">
+                        <a href="{% url 'student_update_profile'%}"><i class="fas fa-edit edit-icon" ></i></a>
+                    </div>
+                    <!-- <img src="{{user.student.profile_pic.url}}" width='50px' height='50px' class="profile-pic"> -->
+                {% endif %}
+                
+                {% comment %} <img src="{% static 'Gvic_project/media/media/profile_pic/staff/FB_IMG_16744995733038120.jpg' %}" width='150px' height='150px' > {% endcomment %}
+    
+                <h3><i class="fas fa-user"></i>Name: <span>{{student.admin.first_name}} {{student.admin.last_name}}</span></h3>
+                <h3><i class="fas fa-chalkboard"></i>Class: <span>{{student.student_class}}</span></h3>
+                <h3><i class="fas fa-chalkboard"></i>Department: <span>{{student.department_id}}</span></h3>
+                <h3><i class="fas fa-add"></i>Age: <span>{{student.age}}</span></h3>
+                <h3><i class="fas fa-book"></i>Subjects Offering: {{dep_count}}</h3>
+                <h3><i class="fas fa-chalkboard-teacher"></i>Class Teacher: {{student.student_class.staff_id.username}} {{student.class.staff_id.first_name}} {{student.class.staff_id.last_name}}</h3>
+                <!-- <h3><i class="fas fa-table-tennis"></i>House(Sport):</h3> -->
+            </div>
+        </div>
+        {%if total_sub%}
+            
+            <div class="subject-table">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th class="col-2">Subject</th> 
+                        <th>Subject Teacher</th> 
+                        <th>Department</th> 
+                    </tr> 
+                    {% for subject in total_sub%}
+                        <tr>
+                            <td>{{subject.id}}</td>
+                            <td class="col-2">{{subject.name}}</td> 
+                            <td>{{subject.staff_id}}</td> 
+                            <td>{{subject.department_id}}</td> 
+                        </tr> 
+                    {%endfor%} 
+                </table>
+            </div>
+        {%endif%}
+    {% endblock %}

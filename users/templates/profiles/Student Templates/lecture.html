@@ -1,0 +1,64 @@
+{% extends 'profiles/Student Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #lecture{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+        .profile-pic{
+            /* margin-top: 20px; */
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+    </style>
+{% endblock css %}
+{% block  content%}
+    <h2 class="add-staff">Lecture</h2>
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="message" id="success-msg">{{message}}</div>
+        {% elif message.tags == "error" %}
+            <div class="message" id="error-msg">{{message}}</div> 
+        {% else %}
+            <div class="message" id="other-msg">{{message}}</div>
+        {% endif%} 
+    {% endfor %}
+
+        {% for lecture in lectures %}
+        {% if lecture.form_class == request.user.student.student_class %}
+
+        <div class="container" style="background-color: rgb(8, 0, 98); padding: 2%; color: white; margin-top: 5%;">
+            <h3 style="width: 100%; height:fit-content; text-align: center;">Subject: {{lecture.subject.name}}</h3>
+            <h4>Composed by:  {{lecture.created_by.admin.first_name}} {{lecture.created_by.admin.last_name}} ({{lecture.created_by.admin.username}})</h4>
+            <h5>Topic/Module: {{lecture.heading}}</h5>
+            <p>Created At: {{lecture.created_at}}</p>
+            <p>Last Updated At: {{lecture.updated_at}}</p>
+            <p>Class: {{lecture.form_class}}</p><br>
+            <p>Lecture Note:<br>
+            <textarea disabled cols="70" style="background-color: white;color: black;"rows="10">{{lecture.lecture_text}}</textarea>
+            </p>
+        
+            {% if lecture.lecture_file %} 
+                <p style="margin-top:2%">Lecture File: <a href="{{lecture.lecture_file.url}}" download> Download Lecture File</p>
+            {%endif%}
+        
+            {% if lecture.lecture_ppt %}
+                <p style="margin-top:2%"><a href="{{lecture.lecture_ppt.url}}" download> Download Lecture PPT</a></p>
+            {%endif%}
+
+            {% if lecture.lecture_video %}
+                <p style="margin-top:2%">Lecture Lecture: <a href="{{lecture.lecture_video.url}}" download> Download Lecture Video</a></p>
+                <video style="margin-top:2%" width="100%" height= "500px" controls>
+                    <source src="{{lecture.lecture_video.url}}">
+                </video>
+            {%endif%}
+        </div>
+        {%endif%}
+        {% endfor %}
+{% endblock %}

@@ -1,0 +1,9 @@
+- View Full profile feature for Staff and Students where admin or staff
+    would be able to check all the details of the student and staff including 
+    their records like results, test scores, last logins etc.
+- Admin can check the school's overall analysis e.g yearly analysis of overall 
+student performance, overall increase or decrease in students and staff.
+
+- Staff can check the analysis and historical data of their class
+like the overall performance of students, the number of students offering each particular subject. 
+- Parents can give feedback.

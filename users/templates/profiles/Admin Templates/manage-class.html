@@ -1,0 +1,113 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <style>
+        #form-el{
+            display: none;
+        }
+        #form-el.active{
+            display: block;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        #department-link{
+            background-color: rgb(3, 100, 174) !important;
+        }
+    </style>
+{% endblock css %}
+{% block content%}
+    <div class=" h-100 overflow-scroll">
+        <h3>Class</h3>
+        <button class="btn-success btn mt-2" id="btn-el"> <i class="fa fa-add"></i> Add Class</button>
+        <form action="" method="POST" class="mt-3" id="form-el" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            <button class="btn-primary btn mt-3">Submit</button>
+        </form>
+        <div class="card-body table-responsive p-0 mt-3">
+            <table class="table table-success table-hover text-nowrap">
+                <tr>
+                    <th>ID</th>
+                    <th>Class</th>
+                    <th>Class Teacher</th>
+                    <th>Date Added</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                {% for class in classes%}
+                    <tr>
+                        <td>{{class.id}}</td>
+                        <td>{{class.name}}</td>
+                        <td>{{class.staff_id}}</td>
+                        <td>{{class.created_at}}</td>
+                        <td><button class="btn btn-primary"><a href="{% url 'admin_edit_class' class_id=class.id %}">Edit</a> </button></td>                 
+                        <td><button class="btn btn-danger"><a href="{% url 'delete_class' class_id=class.id%}">Delete</a></button></td>                 
+                    </tr>
+                {%endfor%}          
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block js%}
+    <script>
+        const btnEl = document.getElementById("btn-el")
+        const formEl = document.getElementById("form-el")
+        btnEl.addEventListener("click", function(){
+            formEl.classList.toggle("active")
+        })
+    </script>
+{% endblock %}
+{% comment %} {% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/manage-class.css' %}">
+        <style>
+            #mg-class{
+                background-color: white;
+                color: rgb(8, 0, 98);
+            }
+            #staff-add{
+                background-color: blue;
+                margin-top: 20px;
+                padding: 15px 30px;
+                border: none;
+                color: white;
+            }
+                
+        </style>
+{% endblock css %}
+{% block  content%}
+<div class="parent-div">
+    <a href="{% url 'add_class' %}"><button id="staff-add"><i class="fas fa-add"></i>Add Class</button></a>
+    <div class="table-div table">
+        <h3>Classes</h3>
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th><p>ID</th>
+                    <th><p>Class</p></th>
+                    <th><p>Class Teacher</p></th>
+                    <th><p>Date Added</p></th>
+                    <th><p>Action</p></th>
+                </tr>
+                {% for class in classes%}
+                    <tr>
+                        <td><p>{{class.id}}</p></td>
+                        <td><p>{{class.name}}</p></td>
+                        <td><p>{{class.staff_id}}</p></td>
+                        <td><p>{{class.created_at}}</p></td>
+                        <td class="button-col">
+                            <a href="{% url 'admin_edit_class' class_id=class.id %}"><button class="edit">Edit</button></a>
+                            <a href="{% url 'delete_class' class_id=class.id%}"><button class="delete">Delete</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %} {% endcomment %}

@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'chat.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome-2/css/all.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <aside>
+            <!-- <i class="fas fa-exit" style="background-color: yellow;"></i> -->
+            <h1>{%if request.user.user_type == "staff"%}
+                    <a href="{% url 'staff_home'%}"><i class="fas fa-arrow-left" style="color: red;"></i></a>
+                {%endif%}
+                {%if request.user.user_type == "student"%}
+                <a href="{% url 'student_home'%}"><i class="fas fa-arrow-left" style="color: red;"></i></a>
+                {%endif%}
+                {{room.name}}
+            </h1>
+            <div class="participants-div">
+                <h3>Participants</h3>
+                <div class="participants-list">
+                        
+
+                            <div class="participant" style="background-color: green;">
+                                <a href="{% url 'personal_message' receiver_pk=room.admin.id%}"></a>
+                                    {%if room.admin.profile_pic%}
+                                        <img src="{{room.admin.profile_pic.url}}" alt="">
+                                    {%else%}
+                                        <div class="no-pic"></div>
+                                    {%endif%}
+                                    <p style="font-weight: 700;">Class Teacher {{room.admin.admin.first_name}}</p>
+                                </a>
+                            </div>
+                        
+                            {%for participants in members%}
+                            <a href="{% url 'personal_message' receiver_pk=participants.admin.id%}">
+                                <div class="participant">
+                                    {%if participants.admin.is_active %}
+                                        <!-- <p>Active</p> -->
+                                    {%endif%}
+                                    {%if participants.profile_pic%}
+                                        <img src="{{participants.profile_pic.url}}" alt="">
+                                    {%else%}
+                                        <div class="no-pic"></div>
+                                    {%endif%}
+                                    <p>{{participants.admin.first_name}} {{participants.admin.last_name}}</p>
+                                </div>
+                            </a>
+                            {%endfor%}
+                    
+                </div>
+            </div>
+        </aside>
+        <main>
+            <h3>Messages</h3>
+            <div class="messages-container">
+                {%if messages%}
+                    {% for message in messages%}
+                        {%if message.sender == room.admin.admin%}
+                            {% if request.user == room.admin.admin%}
+                            <div class="msg-div" id="my-msg-div">
+                                <div class="messages admin-msg" id="my-msg">
+                                    <span class="sender">{{message.sender.first_name}} {{message.sender.last_name}}</span><p></p>
+                                    <p class="msg">{{message.message}}</p>
+                                    {%if message.message_image%}
+                                    <a href="{{message.message_image.url}}" download><img src="{{message.message_image.url}}" alt="" style="margin-top: 5px; margin-bottom: 5px;"></a>
+                                    <p></p>
+                                    {%endif%}
+                                    {%if message.message_file%}
+                                        <a href="{{message.message_file.url}}" download style="margin-bottom: 5px; color: white;"><i class="fas fa-file-download"></i><span>{{message.message_file}}</span></a><p></p>
+                                    {%endif%}
+                                    {%if request.user == room.admin.admin or message.sender == request.user%}
+                                    <a href="{% url 'delete_message' room_id=room.id message_id=message.id%}"><i class="fas fa-trash-alt"></i></a>
+                                    {%endif%}
+                                    {%if message.sender == request.user%}
+                                    <a href="{% url 'edit_message' room_id=room.id message_id=message.id%}"><i class="fas fa-edit"></i></a>
+                                    {% endif %} <p></p>
+                                    <span class="msg-time">{{message.created_at}}</span><p></p>
+                                    
+                                </div>
+                            </div>
+                            {%else%}
+                            <div class="msg-div" id="other-msg-div">
+                                <div class="messages admin-msg" id="other-msg">
+                                    <span class="sender">Class Teacher</span><p></p>
+                                    <p class="msg">{{message.message}}</p>
+                                    
+                                    {%if message.message_image%}
+                                    <a href="{{message.message_image.url}}" download><img src="{{message.message_image.url}}" alt="" style="margin-top: 5px; margin-bottom: 5px;"></a><p></p>
+                                    {%endif%}
+                                    {%if message.message_file%}
+                                        <a href="{{message.message_file.url}}" download style="margin-bottom: 5px; color: white;"><i class="fas fa-file-download"></i><span>{{message.message_file}}</span></a><p></p>
+                                    {%endif%}
+                                    {%if request.user == room.admin.admin or message.sender == request.user%}
+                                    <a href="{% url 'delete_message' room_id=room.id message_id=message.id%}"><i class="fas fa-trash-alt"></i></a>
+                                    {%endif%}
+                                    {%if message.sender == request.user%}
+                                    <a href="{% url 'edit_message' room_id=room.id message_id=message.id%}"><i class="fas fa-edit"></i></a>
+                                    {% endif %}<p></p>
+                                    <span class="msg-time">{{message.created_at}}</span><p></p>
+                                    
+                                </div>
+                            </div>
+                            {%endif%}    
+                       
+                        {%else%}
+                            {%if message.sender == request.user%}
+                            <div class="msg-div" id="my-msg-div">
+                                <div class="messages" id="my-msg">
+                                    <span class="sender">{{message.sender.first_name}} {{message.sender.last_name}}</span><p></p>
+                                    <p class="msg">{{message.message}}</p>
+                                    {%if message.message_image%}
+                                    <a href="{{message.message_image.url}}" download><img src="{{message.message_image.url}}" alt="" style="margin-top: 5px; margin-bottom: 5px;"></a><p></p>
+                                    {%endif%}
+                                    {%if message.message_file%}
+                                        <a href="{{message.message_file.url}}" download style="margin-bottom: 5px; color: white;"><i class="fas fa-file-download"></i><span>{{message.message_file}}</span></a><p></p>
+                                    {%endif%}
+                                    {%if request.user == room.admin.admin or message.sender == request.user%}
+                                    <a href="{% url 'delete_message' room_id=room.id message_id=message.id%}"><i class="fas fa-trash-alt"></i></a>
+                                    {%endif%}
+                                    {%if message.sender == request.user%}
+                                    <a href="{% url 'edit_message' room_id=room.id message_id=message.id%}"><i class="fas fa-edit"></i></a>
+                                    {% endif %}<p></p>
+                                    <span class="msg-time">{{message.created_at}}</span><p></p>
+                                    
+                                </div>
+                            </div>
+                            {%else%}
+                            <div class="msg-div" id="other-msg-div">
+                                <div class="messages" id="other-msg">
+                                    <span class="sender">{{message.sender.first_name}} {{message.sender.last_name}}</span><p></p>
+                                    <p class="msg">{{message.message}}</p>
+
+                                    {%if message.message_image%}
+                                    <a href="{{message.message_image.url}}" download><img src="{{message.message_image.url}}" alt="" style="margin-top: 5px; margin-bottom: 5px;"></a><p></p>
+                                    {%endif%}
+                                    {%if message.message_file%}
+                                    <a href="{{message.message_file.url}}" download style="margin-bottom: 5px; color: white;"><i class="fas fa-file-download"></i><span>{{message.message_file}}</span></a><p></p>
+                                {%endif%}
+                                {%if request.user == room.admin.admin or message.sender == request.user%}
+                                <a href="{% url 'delete_message' room_id=room.id message_id=message.id%}"><i class="fas fa-trash-alt"></i></a>
+                                {%endif%}
+                                {%if message.sender == request.user%}
+                                <a href="{% url 'edit_message' room_id=room.id message_id=message.id%}"><i class="fas fa-edit"></i></a>
+                                {% endif %}<p></p>
+                                    <span class="msg-time">{{message.created_at}}</span><p></p>
+                                    
+                                </div>
+                            </div>
+                            {%endif%}
+                        {%endif%}
+                    {%endfor%}
+                {%else%}
+                    <h1>No messages yet, be the first to initiate a conversation</h1>
+                {%endif%}
+            </div>
+            {% block form%}
+            
+            {%endblock%}
+        </main>
+    </section>
+</body>
+</html>

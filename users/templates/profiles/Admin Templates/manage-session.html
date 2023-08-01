@@ -1,0 +1,68 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <style>
+        #form-el{
+            display: none;
+        }
+        #form-el.active{
+            display: block;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        #session-link{
+            background-color: rgb(3, 100, 174) !important;
+        }
+    </style>
+{% endblock css %}
+{% block content%}
+    <div class=" h-100 overflow-scroll">
+        <h3>Sessions</h3>
+        <button class="btn-success btn mt-2" id="btn-el"> <i class="fa fa-add"></i> Add Session</button>
+        <form action="" method="POST" class="mt-3" id="form-el" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label for="session_name" class="form-label">Session Name (e.g 2022/2023 Session)</label>
+                <input type="text" name="name" id="session_name" class="form-control">
+            </div>
+            <div>
+                <label for="start-year" class="form-label">Session Start</label>
+                <input type="date" name="start_year" id="start-year" class="form-control">
+            </div>
+            <div>
+                <label for="end-year" class="form-label">Session End</label>
+                <input type="date" name="end_year" id="start-year" class="form-control">
+            </div>
+            <button class="btn-primary btn mt-3">Submit</button>
+        </form>
+        <div class="card-body table-responsive p-0 mt-3">
+            <table class="table table-success table-hover text-nowrap">
+                <tr>
+                    <th>Sessions</th>
+                    <th>Duration</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                {% for session in sessions%}
+                    <tr>
+                        <td>{{session.name}}</td>
+                        <td>{{session.session_start_year}} to {{session.session_end_year}}</td>
+                        <td><button class="btn btn-primary"><a href="{% url 'edit_session' session_id=session.id%}">Edit</a> </button></td>                 
+                        <td><button class="btn btn-danger"><a href="{% url 'delete_session' session_id=session.id%}">Delete</a> </button></td>                 
+                    </tr>
+                {%endfor%}          
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block js%}
+    <script>
+        const btnEl = document.getElementById("btn-el")
+        const formEl = document.getElementById("form-el")
+        btnEl.addEventListener("click", function(){
+            formEl.classList.toggle("active")
+        })
+    </script>
+{% endblock %}

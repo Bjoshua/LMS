@@ -1,0 +1,65 @@
+{% extends 'profiles/Staff Templates/base.html' %}
+{%block content%}
+{% block css %}
+<style>
+    #form-el{
+        display: none;
+    }
+    #form-el.active{
+        display: block;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    #session-link{
+        background-color: rgb(3, 100, 174) !important;
+    }
+</style>
+{% endblock css %}
+<div class="">
+    <h4>Manage CBTs</h4>
+    <button class="btn-success btn mt-2" id="btn-el">Create CBT</button>
+    {% comment %} {% for _ in 6%} {% endcomment %}
+        <form action="" method="post"  class="" style="overflow: hidden; width: 100%;" id="form-el">
+            {%csrf_token%}
+            {{form}}
+            <button type = "submit" class="btn btn-primary mt-3 w-100">Submit</button>
+        </form>
+    {% comment %} {%endfor%} {% endcomment %}
+    {%for cbt in cbts %}
+        <div class="table-div mt-3 table-responsive">
+            <table class="table table-hover table-primary text-nowrap">
+                <tr>
+                    <th>CBT Name</th>
+                    <th>Subject</th>
+                    <th>Class</th>
+                    <th>Duration</th>
+                    <th>No. Questions</th>
+                    <th>No. of Student Attempt</th>
+                    <th>Marks</th>
+                    <th>Date Created</th>
+
+                </tr>
+                <tr>
+                    <td>{{cbt.name}}</td>
+                    <td>{{cbt.subject}}</td>
+                    <td>{{cbt.class}}</td>
+                    <td>{{cbt.duration}}</td>
+                    <td>{{cbt.questions}}</td>
+                    <td>{{cbt.questions}}</td>
+                    <td>{{cbt.marks}}</td>
+                    <td>{{cbt.created_at.date}}</td>
+                </tr>
+            </table>
+        </div>
+    {%endfor%}
+</div>
+<script>
+    const btnEl = document.getElementById("btn-el")
+    const formEl = document.getElementById("form-el")
+    btnEl.addEventListener("click", function(){
+        formEl.classList.toggle("active")
+    })
+</script>
+{%endblock content%}

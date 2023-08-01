@@ -1,0 +1,92 @@
+{% extends 'profiles/Staff Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #mg-ass{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+    </style>
+
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Add Assignment</h3>
+    <form role="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        {%for aa in form %}
+            {{aa.helptext}}
+        {% endfor %}
+        <!-- <div class="form-group">
+            <label>First name</label>
+            <input type="text" class="form-control" name="username" placeholder="First name" id="id_username">
+        </div>
+
+        <div class="form-group">
+            <label>Middle Name</label>
+            <input type="text" class="form-control" name="first_name" placeholder="Middle Name">
+        </div>
+
+        <div class="form-group">
+            <label>Last Name(Surname)</label>
+            <input type="text" class="form-control" name="last_name" placeholder="Last Name(Surname)">
+        </div>
+
+        <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" name="email" placeholder="Enter email" id="id_email">
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <select  class="form-control" name="gender" placeholder="Gender" id="gender">
+                <option value="">Male</option>
+                <option value="">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Student Class</label>
+            <select  class="form-control" name="student_class" placeholder="Student Class" id="gender">
+            {% for class in classes %}
+                <option value="">{{class.name}}</option>
+            {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Department</label>
+            <select  class="form-control" name="department_id" placeholder="Department" id="gender">
+            {% for class in departments %}
+                <option value="">{{class.name}}</option>
+            {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Session</label>
+            <select  class="form-control" name="session_year_id" placeholder="Session" id="gender">
+            {% for class in sessions %}
+                <option value="">{{class.name}}</option>
+            {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+
+        <div class="form-group">
+            <label>Address</label>
+            <textarea class="form-control" name="address" placeholder="Address"></textarea>
+        </div>  -->
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Add Assignment</button>
+        </div>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block content %}
+    <link rel="stylesheet" href="{% static 'contacts.css' %}">
+        <section class="contact-sec">
+            
+            <aside>
+                <img src="{% static 'media/3d (32).png' %}" alt="">
+            </aside>
+            <main>
+                <h1>Contact Us</h1>
+                <div class="cont-div" id="cont-div-1">
+                    <div class="contacts">
+                        <i class="fa fa-phone"></i>
+                        <p>08012345678, 09112345678</p>
+                    </div>
+                    <div class="contacts">
+                        <i class="fab fa-whatsapp"></i>
+                        <p>08012345678, 09112345678</p>
+                    </div>
+                </div>
+                <div class="cont-div" id="cont-div-2">
+                    <div class="contacts">
+                        <i class="fab fa-facebook"></i>
+                        <p>@GloriousVA002</p>
+                    </div>
+                    <div class="contacts">
+                        <i class="fa fa-envelope"></i>
+                        <p><a href="mailto:gloriousvisionacademy@gmail.com">gloriousvisionacademy@gmail.com</a></p>
+                    </div>
+                </div>
+                
+            </main>
+        </section>
+    {% endblock %}

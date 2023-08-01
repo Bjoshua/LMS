@@ -1,0 +1,55 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <style>
+        #form-el{
+            display: none;
+        }
+        #form-el.active{
+            display: block;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        #staff-leave-link{
+        background-color: rgb(3, 100, 174) !important;
+        }
+    </style>
+{% endblock css %}
+{% block content%}
+    <div class=" h-100 overflow-scroll">
+        <h3>Staff Leave Application</h3>
+        {% comment %} <button class="btn-success btn mt-2" id="btn-el"> <i class="fa fa-add"></i> Add Staff</button> {% endcomment %}
+        <div class="card-body table-responsive p-0 mt-3">
+            <table class="table table-success table-hover text-nowrap">
+                <tr>
+                    <th>Staff ID</th>
+                    <th>Staff Name</th>
+                    <th>Leave Message</th>
+                    <th>Applied On</th>
+                    <th>Action</th>
+                </tr>
+            {% for leave in leaves %}
+                <tr>
+                    <td>{{ leave.staff_id.admin.id }}</td>
+                    <td>{{ leave.staff_id.admin.first_name }} {{ leave.staff_id.admin.last_name }}</td> 
+                    {% comment %} <td>{{ leave.leave_date }}</td> {% endcomment %}
+                    <td>{{ leave.leave_message }}</td>
+                    <td>{{ leave.created_at }}</td>
+                    <td>
+                        {% if leave.leave_status == 0 %}
+                            <button class="btn btn-danger"><a href="{% url 'student_leave_approve' leave_id=leave.id %}" class="btn btn-success">Approve</a></button>
+                            <button class="btn btn-danger"><a href="{% url 'student_leave_reject' leave_id=leave.id %}" class="btn btn-danger">Reject</a></button>
+                        {% elif leave.leave_status == 1 %}
+                            <button class="btn btn-warning" disabled="disabled" style="cursor: not-allowed;">Approved</button>
+                        {% else %}
+                            <button class="btn btn-danger" disabled="disabled" style="cursor: not-allowed;">Rejected</button>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    <div>
+{% endblock %}

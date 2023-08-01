@@ -1,0 +1,97 @@
+    {% load static %}
+    <!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>glorious vision academy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'evo-calendar.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'evo-calendar.midnight-blue.css' %}"/>
+              
+    </head>
+    <body>
+        <header>
+            <h1><a href="{% url 'home' %}">GVA</a></h1>            
+            <nav>
+                <a href="{% url 'home' %}"class="home">Home</a>
+                <a href="{% url 'about'%}">About Us</a>
+                <a href="{% url 'offers' %}">What we offer</a>
+                <a href="{% url 'contacts' %}">Contacts</a>
+                <a href="{% url 'events' %}">Events</a>
+                <a href="{% url 'calendar' %}">Calender</a>
+            </nav>
+            <button class="hamburger">
+                <div class="bar"></div>            
+            </button>
+            <nav class="mobile-nav">
+                <a href="{% url 'home' %}"class="home">Home</a>
+                <a href="{% url 'about'%}">About Us</a>
+                <a href="{% url 'offers' %}">What we offer</a>
+                <a href="{% url 'contacts' %}">Contacts</a>
+                <a href="{% url 'events' %}">Events</a>
+                <a href="{% url 'calendar' %}">Calender</a>
+            </nav>
+        </header>
+        <section><div id="calendar"></div></section>
+        
+        <footer>
+            <div class="footer-div">
+                <div class="footer-section">
+                    <div class="foot-divs" id="foot-div-1">
+                        <h3>Glorious Vision Academy</h3>
+                        <p>Doing all we can to make your children all they can be in-line with what God wants them to be </p>
+                        <h3>Our location:</h3>
+                        <address><i class="fa-solid fa-location-dot"></i>Temidire Street off Hajj Camp road, Gaa-Odota, Ilorin, Kwara State</address>
+                    </div>
+                    <div class="foot-divs" id="foot-div-2">
+                        <h3>Links</h3>
+                        <p><a href="{% url 'home' %}"><i class="fa-solid fa-house-user"></i>Home</a></p>
+                        <p><a href="{% url 'about' %}">About us</a></p>
+                        <p><a href="{% url 'offers' %}">What we offer</a></p>
+                        <p><a href="{% url 'contacts' %}"><i class="fa fa-phone"></i>Contacts</a></p>
+                        <p><a href="{% url 'events' %}">Events</a></p>
+                        <p><a href="{% url 'calendar' %}"><i class="fa fa-calendar-days"></i>Calendar</a></p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <div class="foot-divs" id="foot-div-3">
+                        <h3>About us</h3>
+                        <p>We are a body with the goal of producing teens and young adults who will be useful to God, to the society and to themselves as well. Our students are nothing short of fortunate to be part of us.</p>
+                        <p></p>
+                    </div>
+                    <div class="foot-divs" id="foot-div-4">
+                        <h3><i class="fa-regular fa-address-book"></i>Contact Us</h3>
+                        <p><i class="fa fa-phone"></i>08012345678</p>
+                        <p><i class="fa-regular fa-envelope"></i><a href="mailto:gloriousacademy@gmail.com">gloriousacademy@gmail.com</a></p>
+                        <p><i class="fab fa-facebook"></i>@Glorious Vision Academy</p>
+                        <p><i class="fab fa-twitter"></i>@GloriousVA002</p>
+                        <p><i class="fab fa-instagram"></i>@Glorious2002</p>
+                        
+                    </div>
+                </div>
+        </div>
+        <div class="last-div">
+            <p>Developed by: Benard Joshua, <i class="fa fa-phone"></i>07062700322, <i class="fa-regular fa-envelope"></i><a href="mailto:joshybenard@gmail.com"> joshybenard@gmail.com</a></p>
+                       
+        </div>
+        </footer>
+        
+        <script src="{% static 'js/mainscript.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="{% static 'js/evo-calendar.min.js' %}"></script>
+        <script>
+            $(document).ready(function() {
+                $('#calendar').evoCalendar({
+                    theme: 'Midnight Blue'
+                })
+            })
+        </script>
+    </body>
+</html>
+
+        
+  
+       
+
+   

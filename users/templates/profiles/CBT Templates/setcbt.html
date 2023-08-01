@@ -1,0 +1,45 @@
+{% extends 'profiles/Staff Templates/base.html' %}
+{%block content%}
+<style>
+</style>
+<div>
+    <!-- <h2></h2> -->
+    <form action="" method="POST" class="container p-3" enctype="multipart/form-data">
+        {%csrf_token%}
+        {% for question in cbt_questions %}
+            <div class="bg-primary p-3 mt-4">
+                <div>
+                    <p for="question_{{question.id}}">Question</p>
+                    <textarea name="question_{{question.id}}" id="question_{{question.id}}" cols="30" rows="5" required class="form-control"></textarea>
+                </div>
+                <div>
+                    <p for="option1_{{question.id}}">Option 1</p>
+                    <input name="option1_{{question.id}}" id="option1_{{question.id}}" cols="30" rows="5" class="form-control" required>
+                </div>
+                <div>
+                    <p for="option2_{{question.id}}">Option 2</p>
+                    <input name="option2_{{question.id}}" id="option2_{{question.id}}" cols="30" rows="5" class="form-control" required>
+                </div>
+                <div>
+                    <p for="option3_{{question.id}}">Option 3</p>
+                    <input name="option3_{{question.id}}" id="option3_{{question.id}}" cols="30" rows="5" class="form-control" required>
+                </div>
+                <div>
+                    <p for="option4_{{question.id}}">Option 4</p>
+                    <input name="option4_{{question.id}}" id="option4_{{question.id}}" cols="30" rows="5" class="form-control" required>
+                </div>
+                <div>
+                    <p for="answer_{{question.id}}">Correct Answer</p>
+                    <select name="answer_{{question.id}}" id="" class="form-select">
+                        <option value="Option1">Option1 </option>
+                        <option value="Option2">Option2 </option>
+                        <option value="Option3">Option3 </option>
+                        <option value="Option4">Option4 </option>
+                    </select>
+                </div>
+            </div>
+        {%endfor%}
+        <button type="submit" class="btn btn-success w-100 mt-3">Submit</button>
+    </form>
+</div>
+{% endblock content%}

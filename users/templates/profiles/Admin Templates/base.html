@@ -1,0 +1,124 @@
+{% extends 'profiles/base.html'%}
+{% load static %}
+{% block css %}
+    
+{% endblock %}
+{% block dashboard %}
+<a href="#" class="nav-link px-3 d-flex align-items-center"><i class="fa fa-user me-2"></i><h5>Admin Dashboard</h5></a>
+{% endblock %}
+{% block links %}
+    <li class="nav-item li-el" id="home-link">
+        <a href="{% url 'admin_home'%}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Home</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a href="{% url 'manage_staff'%}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Staffs</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="assessment-link">
+        <a href="{% url 'manage_staff'%}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Assessments</p>
+        </a>
+    </li>
+    {% comment %} <li class="nav-item li-el" id="staff-link">
+        <a href="{% url 'add_staff'%}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Staffs</p>
+        </a>
+    </li> {% endcomment %}
+    <li class="nav-item li-el" id="session-link">
+        <a href="{% url 'session' %}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Sessions</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="semester-link">
+        <a href="{% url 'manage_class'%}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Class</p>
+        </a>
+    </li>
+    {% comment %} <li class="nav-item li-el" id="department-link">
+        <a href="{% url 'departments'%}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Departments</p>
+        </a>
+    </li> {% endcomment %}
+   
+    <li class="nav-item li-el" id="course-link">
+        <a href="{% url 'manage_sub'%}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Subjects</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="student-link">
+        <a href="{% url 'manage_stud'%}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Students</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="aspirant-link">
+        <a href="{% url 'admin_prospective_view' %}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Aspirants</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="stud-leave-link">
+        <a href="{% url 'student_leave_view' %}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">View Students Leave</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-leave-link">
+        <a href="{% url 'staff_leave_view' %}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">View Staff Leave</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="stud-feed-link">
+        <a href="{% url 'student_feedback_view' %}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">View Student Feedback</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-feed-link">
+        <a href="{% url 'staff_feedback_view' %}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">View Staff Feedback</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-feed-link">
+        <a href="{% url 'bulk_email' %}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Bulk Email</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="events-link">
+        <a href="{% url 'manage_events' %}" class="nav-link gap-2 active d-flex align-items-center">
+            <p class="text" style="color: white;">Manage Events</p>
+        </a>
+    </li>
+{% endblock links %}
+
+{% comment %} {% extends 'profiles/base.html'%}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block links %}
+    <a href="{%  url 'admin_home' %}" id="home"><i class="fas fa-home"></i> Home</a>
+    <a href="{%  url 'manage_staff' %}" id="mg-staff"><i class="fas fa-chalkboard-teacher"></i> Manage Staff</a>
+    <a href="{%  url 'add_staff' %}" id="add-staff"><i class="fas fa-add"></i> Add Staff</a>
+    <a href="{%  url 'manage_stud' %}" id="mg-stu"><i class="fas fa-user-graduate"></i> Manage Students</a>
+    <a href="{%  url 'add_stud' %}" id="add-stu"><i class="fas fa-add"></i> Add Students</a>
+    <a href="{%  url 'manage_sub' %}" id="mg-sub"><i class="fas fa-book"></i> Manage Subjects</a>
+    <a href="{%  url 'add_sub' %}" id="add-sub"><i class="fas fa-add"></i> Add Subjects</a>
+    <a href="{%  url 'manage_class' %}" id="mg-class"><i class="fas fa-chalkboard"></i> Manage Class</a>
+    <a href="{%  url 'add_class' %}" id="add-class"><i class="fas fa-add"></i> Add Class</a>
+    <a href="{%  url 'add_session' %}" id="add-session"><i class="fas fa-add"></i> Add Session</a>
+    <a href="{%  url 'student_leave_view' %}" id="stud-leave"><i class="fas fa-message"></i> View Students Leave</a>
+    <a href="{%  url 'staff_leave_view' %}" id="staff-leave"><i class="fas fa-message"></i> View Staff Leave</a>
+    <a href="{%  url 'student_feedback_view' %}" id="stud-feedback"><i class="fas fa-inbox"></i> View Student Feedback</a> 
+    <a href="{%  url 'staff_feedback_view' %}" id="staff-feedback"><i class="fas fa-inbox"></i> View Staff Feedback</a>
+    <a href="{%  url 'admin_assignment_view' %}" id="assignn"><i class="fas fa-book"></i> View Assignments</a>
+    <a href="{%  url 'admin_test_view' %}" id="test"><i class="fas fa-book"></i> View Tests</a>
+    <a href="{%  url 'admin_exam_view' %}" id="exam"><i class="fas fa-book"></i> View Examinations</a>
+    <a href="{%  url 'admin_lecture_view' %}" id="lect"><i class="fas fa-book-reader"></i> View Lectures</a>
+    <a href="{%  url 'admin_prospective_view' %}" id="pros"><i class="fas fa-user"></i> View Prospective Candidates</a>
+    <a href="{%  url 'add_events' %}" id="add-event"><i class="fas fa-add"></i> Add Event</a>
+    <a href="{%  url 'manage_events' %}" id="mg-event"><i class="fas fa-table"></i>Manage Event</a>
+{% endblock links %}
+{% block dashboard %}
+    <h2><i class="fas fa-user"></i>  Admin Dashboard</h2>
+{% endblock %}
+ {% endcomment %}

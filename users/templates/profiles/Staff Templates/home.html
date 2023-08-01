@@ -1,0 +1,64 @@
+{% extends 'profiles/Staff Templates/base.html'%}
+{% load static %}
+{% block css %}
+    {% comment %} <link rel="stylesheet" href="{% static 'profile/admin/home.css' %}"> {% endcomment %}
+{% endblock css %}
+{% block  content%}
+        <div class="row flex-row h-50 " style="color: white !important;">
+            <div class="col-sm-12 d-flex flex-md-column flex-sm-row align-items-center justify-content-evenly p-2 col-md-6 h-100 bg-success">
+                {% if user.staff.profile_pic %}
+                <div class="profile-div position-relative">
+                    <img src="{{user.staff.profile_pic}}" style="width: 120px; height: 120px; border: 2px solid white;"  class="profile-pic rounded-circle">
+                    <a href="{% url 'staff_update_profile'%}" class="position-absolute bg-light rounded-circle d-flex flex-column align-items-center justify-content-center" style=" padding-bottom: 2px; bottom: 0px; right:10px; width:30px; height:30px; color:red !important;"><i class="fas fa-edit edit-icon" ></i></a>
+                </div>
+                {% endif %}
+                <div class="d-flex flex-column gap-2">
+                    <h6><i class="fas fa-user"></i> <span> <b>{{user.first_name}}</b> {{user.last_name}}</span></h6>
+                    <h6><i class="fas fa-envelope"></i> <span> {{user.email}}</span></h6>
+                    <h6><i class="fas fa-phone"></i> <span> {{user.staff.phone_number}}</span></h6>
+                    <h6><i class="fas fa-school"></i> <span> {{user.staff.form_class}}</span></h6>
+                </div>
+            </div>
+            {% comment %} <a href="{% url 'staff_manage_stud' %}" class="nav-link"> {% endcomment %}
+                <div id="div-2" class="col-sm-12 d-flex flex-column align-items-center justify-content-evenly col-md-6 h-100 bg-warning">
+                    <h5><i class="fas fa-user-graduate"></i> Number of Students: {{student_count.count}}</h5>
+                    <a href="{% url 'staff_manage_stud' %}">More info <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div id="div-2" class="col-sm-12 d-flex flex-column align-items-center justify-content-evenly col-md-6 h-100 bg-info">
+                    <h5><i class="fas fa-user-graduate"></i> Number of Assignments Submitted:
+                        {%if submitted_assignments%} 
+                            {{submitted_assignments.count}}
+                        {%else%}
+                        0 
+                        {%endif%}
+
+                    </h5>
+                    <a href="{% url 'staff_manage_stud' %}">More info <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div id="div-2" class="col-sm-12 d-flex flex-column align-items-center justify-content-evenly col-md-6 h-100 bg-primary">
+                    <h5><i class="fas fa-user-graduate"></i> Number of Tests Submitted:
+                        {%if submitted_assignments%} 
+                            {{submitted_assignments.count}}
+                        {%else%}
+                        0 
+                        {%endif%}
+
+                    </h5>
+                    <a href="{% url 'staff_manage_stud' %}">More info <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div id="div-2" class="col-sm-12 d-flex flex-column align-items-center justify-content-evenly col-md-6 h-100 bg-danger">
+                    <h5><i class="fas fa-user-graduate"></i> Number of Exams Submitted:
+                        {%if submitted_assignments%} 
+                            {{submitted_assignments.count}}
+                        {%else%}
+                        0 
+                        {%endif%}
+
+                    </h5>
+                    <a href="{% url 'staff_manage_stud' %}">More info <i class="fas fa-arrow-right"></i></a>
+                </div>
+            {% comment %} </a> {% endcomment %}
+        </div>
+{%endblock content%}
+
+

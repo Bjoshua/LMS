@@ -1,0 +1,22 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    {% comment %} <link rel="stylesheet" href="{% static 'profile/admin/add-subjects.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #add-class{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+    </style>
+{% endblock css %}
+{% block  content%}
+    <h1>Edit Class</h1>
+    <form role="form" method="POST">
+        {% csrf_token%}
+        {{form}}
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Edit Class</button>
+        </div>
+    </form>
+{% endblock %}

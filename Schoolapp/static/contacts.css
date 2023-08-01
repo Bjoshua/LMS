@@ -1,0 +1,109 @@
+*{
+    font-family: montserrat;
+    cursor: default;
+    margin: 0px;
+    padding: 0px; 
+    box-sizing: border-box; 
+}
+::-webkit-scrollbar, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track{
+    width: 0px;
+    margin: 0px;
+    padding: 0;
+    display: none;
+    visibility: hidden;
+}
+#contact{
+    border-bottom: 2px solid white;
+}
+html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0%;
+    padding: 0%;
+    overflow-x: hidden;
+}
+header nav a:hover, #conts{
+    border-bottom: 2px solid white;
+    
+}
+section{
+    top: 10%;
+    width: 101%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: -1%;
+    overflow: hidden;
+    /* margin-top: 0px ; */
+}
+.contact-sec{
+    background-image: url(media/Pic30.jpg);
+    background-repeat: none;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    color: white;
+    gap: 5%;
+}
+aside{
+    /* flex-basis: 1; */
+    /* border: 2px solid black; */
+    width: 40%;
+    height: 80%;
+}
+main{
+    width: 60%;
+    height: 80%;
+}
+aside img{
+    height: 120%;
+    margin-left: 5%;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cont-div{
+    width: 80%;
+    height: 40%;
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.cont-div .contacts{
+    width: fit-content;
+    min-width: 200px;
+    padding: 0px 10px;
+    height: 50%;
+    color: rgb(8, 0, 98);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.cont-div .contacts p{
+    font-weight: bold;
+}
+.cont-div .contacts i{
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgb(8, 0, 98);
+    color: white;
+    font-size: 16px;
+}
+main div img{
+    width: 10%;
+    /* margin-right: 15%; */
+}
+footer{
+    margin-top: 4%;
+}

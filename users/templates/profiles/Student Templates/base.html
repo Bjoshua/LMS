@@ -1,0 +1,78 @@
+{% extends 'profiles/base.html'%}
+{% load static %}
+{% block css %}
+
+{% endblock %}
+{% block dashboard %}
+    <a href="{% url 'student_home'%}" class="nav-link px-3 d-flex align-items-center"><i class="fa fa-user me-2"></i><h5>Student Dashboard</h5></a>
+{% endblock %}
+{% block links %}
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'student_home' %}" id="home-link">
+            <p><i class="fas fa-home me-3"></i>Home</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'subjects'%}" id="subjects">
+            <p><i class="fas fa-book me-2"></i>View Subjects</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'stud_leave'%}" id="leave">
+            <p><i class="fas fa-running me-2"></i>Apply for Leave</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'stud_feedback'%}" id="feedback">
+            <p><i class="fas fa-comment me-2"></i>Send Feedback</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'student_lecture'%}" id="lecture">
+            <p><i class="fas fa-chalkboard me-2"></i>Take Lecture</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'student_assignment'%}" id="assign">
+            <p><i class="fas fa-book me-2"></i>Take Assignments</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'student_test'%}" id="test">
+            <p><i class="fas fa-book me-2"></i>Take Test</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'student_examination'%}" id="exam">
+            <p><i class="fas fa-book me-2"></i>Take Examination</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'allcbts'%}" id="exam">
+            <p><i class="fas fa-book me-2"></i>CBT Exams</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'assignment_view'%}" id="assign">
+            <p><i class="fas fa-table me-2"></i>Assignments Records</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'test_view'%}" id="test">
+            <p><i class="fas fa-table me-2"></i>Test Records</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link">
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'exam_view'%}" id="exam">
+            <p><i class="fas fa-table me-2"></i>Examination Records</p>
+        </a>
+    </li>
+    <li class="nav-item li-el" id="staff-link"> 
+        <a class="nav-link gap-2 active d-flex align-items-center" href="{% url 'student_update_profile'%}" id="profile">
+            <p><i class="fas fa-user me-2"></i>Update Profile</p>
+        </a>
+    </li>
+{% endblock links %}
+{% block content %}
+
+{%endblock content%}

@@ -1,0 +1,42 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    {% comment %} <link rel="stylesheet" href="{% static 'profile/admin/home.css' %}"> {% endcomment %}
+    <style>
+        #home-link{
+            background-color: rgb(3, 100, 174) !important;
+        }
+    </style>
+{% endblock css %}
+{% block  content%}
+    <div class="row flex-row h-50 " style="color: white !important;">
+        <div class="col-sm-4 d-flex flex-column align-items-center justify-content-evenly col-md-6 h-100 bg-success">
+            <h3>Staff</h3>
+            <p>{{staffs.count}}</p>
+            <a href="{% url 'manage_staff'%}" class="nav-link" style="color: white;">See More <i class="fa fa-angle-right"></i></a>
+        </div>
+        <div class="col-sm-4 d-flex flex-column align-items-center justify-content-evenly col-md-6 h-100 bg-primary">
+            <h3>Students</h3>
+            <p>{{students.count}}</p>
+            <a href="{% url 'manage_stud'%}" class="nav-link" style="color: white;">See More <i class="fa fa-angle-right"></i></a>
+        </div>
+        <div class="col-sm-4 d-flex flex-column align-items-center justify-content-evenly col-md-6 h-100 bg-danger">
+            <h3>Subjects</h3>
+            <p>{{subjects.count}}</p>
+            <a href="{% url 'manage_sub'%}" class="nav-link" style="color: white;">See More <i class="fa fa-angle-right"></i></a>
+        </div>
+        <div class="col-sm-4 d-flex flex-column align-items-center justify-content-evenly col-md-6 h-100 bg-warning">
+            <h3>Classes</h3>
+            <p>{{classes.count}}</p>
+            <a href="{% url 'manage_class'%}" class="nav-link" style="color: white;">See More <i class="fa fa-angle-right"></i></a>
+        </div>
+        <div class="col-sm-4 d-flex flex-column align-items-center justify-content-evenly col-md-6 h-100 bg-secondary">
+            <h3>Departments</h3>
+            <p>{{departments.count}}</p>
+            <a href="" class="nav-link" style="color: white;">See More <i class="fa fa-angle-right"></i></a>
+        </div>
+    </div>
+    <div></div>
+    <div></div>
+{% endblock%}
+

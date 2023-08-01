@@ -1,0 +1,64 @@
+{%extends 'p_chat_room.html'%}
+
+{%block message%}
+<main>
+    <h3>{{receiver.first_name}} {{receiver.last_name}}</h3>
+    <div class="messages-container">
+        {%if messages%}
+            {% for message in messages%}
+                
+                    {%if message.sender == request.user%}
+                    <div class="msg-div" id="my-msg-div">
+                        <div class="messages" id="my-msg">
+                            <span class="sender">{{message.sender.first_name}} {{message.sender.last_name}}</span><p></p>
+                            <p class="msg">{{message.message}}</p>
+                            {%if message.message_image%}
+                            <a href="{{message.message_image.url}}" download><img src="{{message.message_image.url}}" alt="" style="margin-top: 5px; margin-bottom: 5px;"></a><p></p>
+                            {%endif%}
+                            {%if message.message_file%}
+                                <a href="{{message.message_file.url}}" download style="margin-bottom: 5px; color: white;"><i class="fas fa-file-download"></i><span>{{message.message_file}}</span></a><p></p>
+                            {%endif%}
+                            {%if request.user == room.admin.admin or message.sender == request.user%}
+                            <a href="{% url 'delete_message_personal' receiver_pk=message.receiver.id message_id=message.id%}"><i class="fas fa-trash-alt"></i></a>
+                            {%endif%}
+                            {%if message.sender == request.user%}
+                            <a href="{% url 'edit_message_personal' message_id=message.id receiver_pk=message.receiver.id%}"><i class="fas fa-edit"></i></a>
+                            {% endif %}<p></p>
+                            <span class="msg-time">{{message.created_at}}</span><p></p>
+                            
+                        </div>
+                    </div>
+                    {%else%}
+                    <div class="msg-div" id="other-msg-div">
+                        <div class="messages" id="other-msg">
+                            <span class="sender">{{message.sender.first_name}} {{message.sender.last_name}}</span><p></p>
+                            <p class="msg">{{message.message}}</p>
+
+                            {%if message.message_image%}
+                            <a href="{{message.message_image.url}}" download><img src="{{message.message_image.url}}" alt="" style="margin-top: 5px; margin-bottom: 5px;"></a><p></p>
+                            {%endif%}
+                            {%if message.message_file%}
+                            <a href="{{message.message_file.url}}" download style="margin-bottom: 5px; color: white;"><i class="fas fa-file-download"></i><span>{{message.message_file}}</span></a><p></p>
+                        {%endif%}
+                        {%if request.user == room.admin.admin or message.sender == request.user%}
+                        <a href="{% url 'delete_message_personal' receiver_pk=message.receiver.id message_id=message.id%}"><i class="fas fa-trash-alt"></i></a>
+                        {%endif%}
+                        {%if message.sender == request.user%}
+                        <a href="{% url 'edit_message_personal' message_id=message.id receiver_pk=message.receiver.id%}"><i class="fas fa-edit"></i></a>
+                        {% endif %}<p></p>
+                            <span class="msg-time">{{message.created_at}}</span><p></p>
+                            
+                        </div>
+                    </div>
+                    {%endif%}
+                
+            {%endfor%}
+        {%else%}
+            <h1>No messages yet, be the first to initiate a conversation</h1>
+        {%endif%}
+    </div>
+    {% block form%}
+    
+    {%endblock%}
+</main>
+{%endblock%}

@@ -1,0 +1,28 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #mg-lec{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+    </style>
+
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Edit Lecture</h3>
+    <form role="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        {%for aa in form %}
+            {{aa.helptext}}
+        {% endfor %}
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Edit Lecture</button>
+        </div>
+    </form>
+
+{% endblock %}

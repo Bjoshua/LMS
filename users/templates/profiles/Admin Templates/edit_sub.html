@@ -1,0 +1,19 @@
+{% extends 'profiles/Admin Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-subjects.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+    </style>
+{% endblock css %}
+{% block  content%}
+    <h1>Edit Subject</h1>
+    <form role="form" method="POST" >
+        {% csrf_token%}
+        {{form}}
+        <div class="card-footer">
+            <input type="submit" class="btn btn-primary" id="submit-btn" value="Edit Subject">
+            {% comment %} <button type="submit" class="btn btn-primary" id="submit-btn">Edit Subject</button> {% endcomment %}
+        </div>
+    </form>
+{% endblock %}

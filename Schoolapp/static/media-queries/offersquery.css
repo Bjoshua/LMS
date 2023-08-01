@@ -1,0 +1,25 @@
+
+
+@media screen and (max-width:895px){
+    .section-0 h1{
+        font-size: 35px;
+    }
+    .section-0 p{
+        font-size: 18px;
+    }
+    section h1{
+        font-size: 18px;
+    }
+    section p{
+        font-size: 15px;
+    }
+}
+@media screen and (max-width:700px){
+    .offer-img{
+        display: none;
+    }
+    .offer-text{
+        padding: 2% 2%;
+        width: 100%;
+    }
+}

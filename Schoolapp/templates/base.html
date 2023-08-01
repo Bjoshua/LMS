@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>glorious vision academy</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'base.css' %}">
+        <link rel="stylesheet" href="{% static 'fontawesome-2/css/all.css' %}">
+        <style>
+            @keyframes fade{
+                0%{
+                    opacity: 1;
+                    
+                }
+                100%{
+                    opacity: 0;
+                }
+            }
+            .message{
+                animation: fade 5s ease-in-out forwards;
+            }
+        </style>
+        <!-- <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"> -->        
+    </head>
+    <body>
+        <header>
+            <div class="head-div" id="first-head">
+                <!-- <h1 id="gva"><a href="{% url 'home' %}">GVA</a></h1> -->
+                <img src="{% static 'media/olutech-logo.png' %}" alt="" style="width: 120px; margin-left: 10PX;">
+                <button class="hamburger">
+                    <div class="bar"></div>            
+                </button>
+            <div class="logins">
+                {% if request.user.is_authenticated %}
+                    {% if user.user_type == 'prospective' %}
+                    <a href="{% url 'logout'%}" >Logout</a>
+                    {% else %}
+                    <a href="{% url 'dashboard' %}" >Profile</a>
+                    <a href="{% url 'logout'%}" >Logout</a>
+                    {%endif%}
+                {% else %}
+                    <a href="{% url 'login' %}" >Login</a>
+                    <a href="{% url 'register' %}" id="reg">Register</a>
+                {% endif %}
+                <a href="{% url 'group_chat_middleware'%}">Group Chat</a>
+                <a href="{% url 'personal_message' receiver_pk=1%}">Personal Chat</a>
+            </div>
+            </div>
+            <div class="head-div" id="sec-head">
+                <nav>
+                    <a href="{% url 'home' %}"class="home">Home</a>
+                    <a href="{% url 'about'%}" class="about">About Us</a>
+                    <a href="{% url 'offers' %}" id="offers">Services</a>
+                    <a href="{% url 'contacts' %}" id="contact">Contacts</a>
+                    <a href="{% url 'events' %}" id="events">Activities</a>
+                    {% if request.user.is_authenticated%}
+                    <a href="{% url 'login' %}" class="calendar">Portal</a>
+                    {%else%}
+                    <a href="{% url 'dashboard' %}" class="calendar">Portal</a>
+<!-- <input type="time" name="" id=""> -->
+                    {%endif%}
+                </nav>
+            </div>
+            
+            <nav class="mobile-nav">
+                {% if request.user.is_authenticated %}
+                    {% if user.user_type == 'prospective' %}
+                    <a href="{% url 'logout'%}" >Logout</a>
+                    {% else %}
+
+                    <a href="{% url 'dashboard' %}" >Portal</a>
+                    <a href="{% url 'logout'%}" >Logout</a>
+                    {%if request.user.user_type == 'staff'%}
+                    <a href="{% url 'room_access' staff_id=request.user.staff.id%}">Group Chat</a>
+                    {%endif%}
+                    {%if request.user.user_type == 'student'%}
+                    <a href="{% url 'stud_room_access' student_id=request.user.student.id%}">Group Chat</a>
+                    {%endif%}
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'login' %}" >Login</a>
+                    <a href="{% url 'register' %}" >Register</a>
+                {% endif %}
+                <a href="{% url 'home' %}"class="home">Home</a>
+                <a href="{% url 'about'%}">About Us</a>
+                <a href="{% url 'offers' %}">What we offer</a>
+                <a href="{% url 'contacts' %}">Contacts</a>
+                <a href="{% url 'events' %}">Activities</a>
+                <a href="{% url 'calendar' %}">Calender</a>
+            </nav>
+        </header>
+
+        {% block content %}{% endblock %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                <div class="message alert alert-dismissible fade show" id="success-msg" role="alert" style="position: relative;">{{message}}
+                    
+                </div>
+            {% elif message.tags == "error" %}
+            <div class="message alert alert-dismissible fade show" id="success-msg" role="alert" style="position: relative;">{{message}}
+                
+            </div>
+            {% else %}
+                <div class="message" id="other-msg">{{message}}</div>
+                
+            {% endif%} 
+        {% endfor %}
+        <!-- <section class="sec-4">
+            <div class="offer-img" id="sec-4-img">
+                <img src="{% static 'media/3d11.png' %}">
+                <div>
+                    <h1>Our Classes</h1>
+                </div>
+            </div>              
+            <div class="our-classes ">
+                <div class="classes" id="kinder">
+                    <h1>Kindergerten</h1>
+                    <p>Our Kindergerten classes are specially made for your toddlers.</p>
+                </div>
+                <div class="classes" id="nur-pri">
+                    <h1>Nursery & Primary</h1>
+                    <p>Our Nursery and Primary classes are functionally made for your young ones.</p>
+                </div>
+                <div class="classes" id="jnr-sec">
+                    <h1>Junior-Secondary</h1>
+                    <p>Our Junior-Secondary classes are specially made to educate your teens for 3 years.</p>
+                </div>
+                <div class="classes" id="snr-sec">
+                    <h1>Senior-Secondary</h1>
+                    <p>Our Senior-Secondary classes are adequately equipped to train your teens and young-adults for 3 years.</p>
+                </div>
+            </div>
+        </section> -->
+        <footer class="fade-in ">
+            <!-- <div class="main-cont"> -->
+            <div class="footer-div">
+                <div class="footer-section">
+                    <div class="foot-divs" id="foot-div-1">
+                        <h3>Glorious Vision Academy</h3>
+                        <p contenteditable>Doing all we can to make your children all they can be in-line with what God wants them to be </p>
+                        
+                    </div>
+                    
+                
+                    <div class="foot-divs" id="foot-div-3">
+                        <h3>Our location:</h3>
+                        <p><i class="fa-solid fa-location-dot jump"></i>Temidire Street off Hajj Camp road, Gaa-Odota, Ilorin, Kwara State</p>
+         
+                    </div>
+                    <div class="foot-divs" id="foot-div-4">
+                        <h3><i class="fa-regular fa-address-book"></i>Contact Us</h3>
+                        <div class="socials">
+                            <i class="fa fa-phone social-links"></i>
+                            <a href="mailto:gloriousacademy@gmail.com"><i class="fa-regular fa-envelope social-links"></i></a>
+                            <i class="fab fa-facebook social-links"></i>
+                            <i class="fab fa-twitter social-links"></i>
+                            <i class="fab fa-instagram social-links"></i>
+                        </div>
+                       
+                        
+                    </div>
+                </div>
+        </div>
+        <div class="last-div">
+            <p>Developed by: Olutech ICT Resources<i class="fa fa-phone social-links"></i>07062700322, <i class="fa-regular fa-envelope social-links"></i><a href="mailto:joshybenard@gmail.com"> joshybenard@gmail.com</a></p>
+        </div>
+        <!-- </div> -->
+        </footer>
+        <script src="{% static 'js/mainscript.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="{% static 'js/evo-calendar.min.js' %}"></script>
+        <script>
+            // const faders = document.querySelectorAll('.fade-in')
+            // const appearOptions = {
+            //     threshold:0,
+            //     rootMargin: "0px 0px -250px 0px"
+            // };
+            // const appearOnScroll = new IntersectionObserver(function(
+            //     entries,
+            //     appearOnScroll
+            // ){
+            //     entries.forEach(entry =>{
+            //         if (!entry.isIntersecting){
+            //             return;
+            //         }else{
+            //             entry.target.classList.add("appear");
+            //             appearOnScroll.unobserve(entry.target);
+            //         }
+            //     });
+            // },
+            // appearOptions);
+            // faders.forEach(fader =>{
+            //     appearOnScroll.observe(fader);
+            // });
+            // let cursor= document.querySelector(".cursor")
+            // let cursor2 = document.querySelector(".cursor2")
+
+            // document.addEventListener("mousemove", e =>{
+            //     cursor.style.cssText = cursor2.style.cssText = "left: "+ e.clientX + "px; top: " + e.clientY + "px;";
+            // });
+        </script>
+    </body>
+</html>
+

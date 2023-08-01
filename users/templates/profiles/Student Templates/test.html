@@ -1,0 +1,53 @@
+{% extends 'profiles/Student Templates/base.html'%}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'profile/admin/add-staff.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/admin/add-students.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <style>
+        #test{
+            background-color: white;
+            color: rgb(8, 0, 98);
+        }
+        .profile-pic{
+            /* margin-top: 20px; */
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+    </style>
+{% endblock css %}
+{% block  content%}
+    <h3 class="add-staff">Test</h3>
+    {% for test in tests %}
+        {% if test.form_class == request.user.student.student_class %}
+                <h2 style="margin-top: 3%;">{{test.subject.name}}</h2>
+                <h3>{{test.test_name}} CA Test</h3>
+
+                <div class="container" style="display: flex; flex-direction:row; background-color: beige;">
+                    <div class="side" style="width:50%; height: 100%; padding: 1%;">
+                        <h3>Test Question</h3>
+                        <textarea disabled cols="40" rows="10">{{test.test_text}}</textarea>
+                        {% if test.test_file %}
+                            <a href="{{test.test_file.url}}"download>Get Test File</a>
+                        {% endif %}
+                    </div>
+                    <form role="form" method="POST" enctype="multipart/form-data" style="width:50%; height: 100%;">
+                        {% csrf_token %}
+                        <h2>Answer To Test</h2>
+                        <input type="hidden" name="test_id" value="{{test.id}}">
+                        <input type="hidden" name="subject" value="{{test.subject.id}}">
+
+                        {{ form }}
+                        {%for aa in form %}
+                            {{aa.helptext}}
+                        {% endfor %}
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary" id="submit-btn">Submit Test</button>
+                        </div>
+                    </form>
+                </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

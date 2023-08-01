@@ -1,0 +1,86 @@
+{% extends 'profiles/Student Templates/base.html' %}
+    {% load static %}
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'profile/students/leave.css' %}">
+        {% comment %} <link rel="stylesheet" href="{% static 'profile/students/home.css' %}"> {% endcomment %}
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+        <style>
+            #leave{
+                background-color: white;
+                color: rgb(8, 0, 98);
+            }
+            .profile-pic{
+                /* margin-top: 20px; */
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                border: 2px solid white;
+            }
+        </style>
+    {% endblock %}
+    {% block content %}
+            <h3>Request for Leave/ Permission for absence</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label>Leave Reason </label>
+                        <textarea name="leave_message" class="form-control" rows="6" placeholder="Leave Message"></textarea>
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Apply for Leave</button>
+                </div>
+
+            </form>
+
+            
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Leave Apply History</h3>
+                        </div>
+
+                        <div class="card-body">
+                        <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th>#ID</th>
+                                        <th>Leave Date</th>
+                                        <th>Leave Message</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    
+                                    {% for leave in leaves %}
+                                    <tr>
+                                        <td>{{ leave.id }}</td>
+                                        <td>{{ leave.created_at }}</td>
+                                        <td>{{ leave.leave_message }}</td>
+                                        <td>
+                                            {% if leave.leave_status == 1 %}
+                                                <span class="alert alert-success">Approved</span>
+                                            {% elif leave.leave_status == 2 %}
+                                                <span class="alert alert-danger">Rejected</span>
+                                            {% else %}
+                                                <span class="alert alert-warning">Pending</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    {% endblock %}

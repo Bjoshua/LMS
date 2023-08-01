@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'fontawesome-2/css/all.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Register(For Prospective Candidates only)</h1>
+    {% for message in messages %}
+    {% if message.tags == 'success' %}
+        <div style="background-color: green; color: white; width: 100%; height: fit-content; padding: 1%;">{{message}}</div>
+    {% endif %}
+    {% if message.tags == 'error' %}
+        <div style="background-color: red; color: white; width: 100%; height: fit-content; padding: 1%;">{{message}}</div>
+    {% endif %}
+    {% endfor %}
+    <div class="container" style="max-width: 500px; align-items: center; background-color: beige; height: 100%; display: flex; justify-content: space-between; padding: 1%;">
+        <form method="POST" style="display:flex; flex-direction: column; align-items: center; overflow: scroll;">
+            {% csrf_token %}
+            {% for for in form %}
+                <p style="margin-top: 2%; margin-bottom: 0px; text-align: left; display: flex; width: 100%; height: fit-content;">{{for.label}}</p>
+                {{for}}
+
+            {% endfor %}
+            <div class="checkbox mb-3" style="color: black; width: 100%;" id="rem-div">
+                <label>
+                <input type="checkbox" value="remember-me" id="rem-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary" type="submit" id="login-btn" style="margin-bottom: 10px !important;">Register</button>
+            <a href="{% url 'home' %}" style="color: black; margin-top: 2%; margin-bottom: 15%; width: 100%; height: 15px; display: flex; justify-content: center;">Back to website</a>
+
+            {% comment %} <section class="section">
+                <div class="login-div">
+                    <div class="input-div">
+                        <div class="form-floating" id="id-div" required style="margin-top: 3%">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Enter your fullname" name="fullname">
+                            <label for="floatingInput">Fullname</label>
+                        </div>                
+
+                        <div class="form-floating" id="password-div" required style="margin-top: 3%">
+                            <input type="email" class="form-control" id="floatingPassword" placeholder="Enter your valid Email Address" name="email">
+                            <label for="floatingPassword">Email Address</label>
+                        </div>
+                        <div class="form-floating" id="id-div" required style="margin-top: 3%">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Enter your valid Phone Number" name="phone_number">
+                            <label for="floatingInput">Phone Number</label>
+                        </div>                
+
+                        <div class="form-floating" id="id-div" style="margin-top: 3%">
+                            {{form}}
+                            {% comment %} <select name="status" class="form-control" id="floatingInput">
+                                <option name="status" value="Parent">Parent</option>
+                                <option name="status" value="Student">Student</option>
+                                <option value="Guardian" name="status">Guardian</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="checkbox mb-3" id="rem-div">
+                        <label>
+                        <input type="checkbox" value="remember-me" id="rem-me"> Remember me
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary" type="submit" id="login-btn" style="margin-bottom: 10px !important;">Register</button>
+                    <a href="{% url 'home' %}" style="color: white; margin-top: 2%; margin-bottom: 2%;">Back to website</a>
+                </div> {% endcomment %}
+            </section>
+        </form> 
+    </div>
+</body>
+</html>
